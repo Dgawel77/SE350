@@ -1,8 +1,10 @@
 package main;
 
+import controller.CommandController;
 import controller.EventConnector;
 import controller.EventConnectorImpl;
 import controller.KeyboardInterface;
+import controller.MouseCoordinateNormalizer;
 import controller.MouseHandler;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -26,29 +28,36 @@ public class Main {
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
 
-        MouseHandler mouse = new MouseHandler();
+        CommandController ComController = new CommandController(paintCanvas);
+
+        MouseHandler mouse = new MouseHandler(ComController);
+
         paintCanvas.addMouseListener(mouse);
         controller.setup();
+
+
 
         Thread.sleep(500);
 
         Graphics2D graphics2d = paintCanvas.getGraphics2D();
 
-        // - Begin example: remove after you understand it
 
-        graphics2d.setColor(Color.GREEN);
-        graphics2d.fillRect(12, 13, 200, 400);
-
-        // Outlined rectangle
-        graphics2d.setStroke(new BasicStroke(5));
-        graphics2d.setColor(Color.BLUE);
-        graphics2d.drawRect(12, 13, 200, 400);
-
-        // Selected Shape
-        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-        graphics2d.setStroke(stroke);
-        graphics2d.setColor(Color.BLACK);
-        graphics2d.drawRect(7, 8, 210, 410);
+//        // - Begin example: remove after you understand it
+//
+//        graphics2d.setColor(Color.GREEN);
+//        graphics2d.fillRect(120, 130, 200, 400);
+//
+//        // Outlined rectangle
+//        graphics2d.setStroke(new BasicStroke(5));
+//        graphics2d.setColor(Color.BLUE);
+//        graphics2d.drawRect(12, 13, 200, 400);
+//        graphics2d.drawString("Hello There World!", 100, 100);
+//
+//        // Selected Shape
+//        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+//        graphics2d.setStroke(stroke);
+//        graphics2d.setColor(Color.BLACK);
+//        //graphics2d.drawRect(7, 8, 210, 410);
 
         // - End example
     }

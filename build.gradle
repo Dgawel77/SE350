@@ -1,6 +1,3 @@
-import org.apache.tools.ant.DirectoryScanner
-
-
 plugins {
     id 'java-library'
 }
@@ -26,15 +23,13 @@ dependencies {
     implementation "ch.qos.logback:logback-core:$logbackVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "org.mockito:mockito-core:3.12.4"
 }
 
 //TODO: change to your userid
 def user = 'DGAWEL'
 
 task packageDistribution(type: Zip) {
-    doFirst{
-        DirectoryScanner.removeDefaultExclude("**/.gitignore")
-    }
     dependsOn check
     archiveFileName = "${user}-${rootProject.name}.zip"
     destinationDirectory = file("$buildDir/dist")
@@ -45,7 +40,6 @@ task packageDistribution(type: Zip) {
         include "gradlew"
         include "gradlew.bat"
         include "settings.gradle"
-        include ".gitignore"
     }
 
     into("${rootProject.name}")

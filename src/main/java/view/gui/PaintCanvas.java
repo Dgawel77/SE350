@@ -21,33 +21,35 @@ public class PaintCanvas extends JComponent {
         return (Graphics2D)getGraphics();
     }
 
-    @Override
+
     /**
      * This is an event handler.  If this function gets called, its time to
      * draw the entire picture.
      * It you want to force a paint event, call aPaintCanvas.repaint()
      */
+    @Override
     public void paintComponent(Graphics graphics) {
-//        Graphics2D graphics2d = (Graphics2D) graphics;
-//
-//        // - Begin example: remove after you understand it
-//        paintCount++;
-//        log.debug("time to paint " + paintCount);
-//
-//        graphics2d.setColor(Color.GREEN);
-//        graphics2d.fillRect(12, 13, 200, 400);
-//
-//        // Outlined rectangle
-//        graphics2d.setStroke(new BasicStroke(5));
-//        graphics2d.setColor(Color.BLUE);
-//        graphics2d.drawRect(12, 13, 200, 400);
-//
-//        // Selected Shape
-//        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-//        graphics2d.setStroke(stroke);
-//        graphics2d.setColor(Color.BLACK);
-//        graphics2d.drawRect(7, 8, 210, 410);
-//
-//        // - End example
+        Graphics2D graphics2d = (Graphics2D) graphics;
+
+
+        // - Begin example: remove after you understand it
+        paintCount++;
+        log.debug("time to paint " + paintCount);
+
+        graphics2d.setColor(Color.GREEN);
+        graphics2d.fillRect(12, 13, 200, 400);
+
+        // Outlined rectangle
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(Color.BLUE);
+        graphics2d.drawRect(12, 13, 200, 400);
+
+        // Selected Shape
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        graphics2d.setStroke(stroke);
+        graphics2d.setColor(Color.BLACK);
+        graphics2d.drawRect(7, 8, 210, 410);
+
+        // - End example
     }
 }

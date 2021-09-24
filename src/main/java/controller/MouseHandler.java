@@ -11,16 +11,28 @@ import org.slf4j.LoggerFactory;
  * classes. This is a boundary class so very little code should be added here.
  */
 public class MouseHandler extends MouseAdapter {
-
   private static final Logger log = LoggerFactory.getLogger(MouseHandler.class);
+  private CommandController controller;
+  public int startX;
+  public int startY;
+  public int endX;
+  public int endY;
+
+  public MouseHandler(CommandController _controller){
+    this.controller = _controller;
+  }
 
   @Override
   public void mousePressed(MouseEvent e) {
-    log.debug("Start " + e.getX() + " " + e.getY());
+    startX = e.getX();
+    startY = e.getY();
   }
 
   @Override
   public void mouseReleased(MouseEvent e) {
-    log.debug("End " + e.getX() + " " + e.getY());
+    endX = e.getX();
+    endY = e.getY();
+    controller.drawAt(startX, startY, endX, endY);
   }
+
 }
