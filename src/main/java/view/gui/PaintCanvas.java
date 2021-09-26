@@ -14,6 +14,7 @@ public class PaintCanvas extends JComponent {
 
     // part of the example below.  Please removed when the example is removed
     private int paintCount = 0;
+    private Renderer viewRenderer;
 
     private static final Logger log = LoggerFactory.getLogger(PaintCanvas.class);
 
@@ -21,7 +22,9 @@ public class PaintCanvas extends JComponent {
         return (Graphics2D)getGraphics();
     }
 
-
+    public PaintCanvas(Renderer _Renderer){
+        this.viewRenderer = _Renderer;
+    }
     /**
      * This is an event handler.  If this function gets called, its time to
      * draw the entire picture.
@@ -30,7 +33,7 @@ public class PaintCanvas extends JComponent {
     @Override
     public void paintComponent(Graphics graphics) {
         Graphics2D graphics2d = (Graphics2D) graphics;
-
+        viewRenderer.render(graphics2d);
 
         // - Begin example: remove after you understand it
         paintCount++;
