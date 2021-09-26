@@ -15,7 +15,7 @@ public class Frame {
     return true;
   }
 
-  public static boolean removeFromFrame(){
+  public boolean removeFromFrame(){
     boolean result = !IShapeStack.empty();
     if (result) {
       IShapeStack.pop();

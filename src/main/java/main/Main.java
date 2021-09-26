@@ -23,10 +23,8 @@ import view.interfaces.UiModule;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Frame viewFrame = new Frame();
-        Renderer viewRenderer = new Renderer(viewFrame);
 
-        PaintCanvas paintCanvas = new PaintCanvas(viewRenderer);
+        PaintCanvas paintCanvas = new PaintCanvas();
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
         UserChoicesImpl appState = new UserChoicesImpl(uiModule);
@@ -35,10 +33,8 @@ public class Main {
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
 
-        CommandHistory cmdHistory = new CommandHistory();
-
         ShapeFactory ShapeFac = new ShapeFactory(appState);
-        CommandController ComController = new CommandController(ShapeFac, cmdHistory, viewFrame, paintCanvas);
+        CommandController ComController = new CommandController(ShapeFac, paintCanvas);
 
         MouseHandler mouse = new MouseHandler(ComController);
 
