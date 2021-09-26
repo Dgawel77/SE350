@@ -15,11 +15,11 @@ public class DrawCommand implements Undoable {
 
   @Override
   public void undo(){
-
+    view.gui.Frame.removeFromFrame();
   }
 
   @Override
   public void redo(){
-
+    view.gui.Frame.addToFrame(this.shape);
   }
 }

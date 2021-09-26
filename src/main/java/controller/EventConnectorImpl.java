@@ -1,7 +1,9 @@
 package controller;
 
+import controller.command.CommandHistory;
 import model.interfaces.UserChoices;
 import view.EventName;
+import view.gui.PaintCanvas;
 import view.interfaces.UiModule;
 
 /**
@@ -10,10 +12,12 @@ import view.interfaces.UiModule;
 public class EventConnectorImpl implements EventConnector {
     private final UiModule uiModule;
     private final UserChoices userChoices;
+    private final CommandController CmdController;
 
-    public EventConnectorImpl(UiModule uiModule, UserChoices userChoices) {
+    public EventConnectorImpl(UiModule uiModule, UserChoices userChoices, CommandController _CmdController) {
         this.uiModule = uiModule;
         this.userChoices = userChoices;
+        this.CmdController = _CmdController;
     }
 
     @Override
@@ -27,5 +31,7 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> userChoices.setActiveSecondaryColor());
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> userChoices.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> userChoices.setActiveStartAndEndPointMode());
+        uiModule.addEvent(EventName.UNDO, () -> CmdController.undo());
+        uiModule.addEvent(EventName.REDO, () -> CmdController.redo());
     }
 }

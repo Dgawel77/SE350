@@ -28,13 +28,16 @@ public class Main {
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
         UserChoicesImpl appState = new UserChoicesImpl(uiModule);
-        EventConnector controller = new EventConnectorImpl(uiModule, appState);
+
+        ShapeFactory ShapeFac = new ShapeFactory(appState);
+        CommandController ComController = new CommandController(ShapeFac, paintCanvas);
+
+        EventConnector controller = new EventConnectorImpl(uiModule, appState, ComController);
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
 
-        ShapeFactory ShapeFac = new ShapeFactory(appState);
-        CommandController ComController = new CommandController(ShapeFac, paintCanvas);
+
 
         MouseHandler mouse = new MouseHandler(ComController);
 

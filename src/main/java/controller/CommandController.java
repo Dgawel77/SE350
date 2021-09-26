@@ -1,6 +1,8 @@
 package controller;
 import controller.command.CommandHistory;
+import java.awt.Canvas;
 import model.interfaces.IShape;
+import view.gui.Frame;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,18 @@ public class CommandController {
     CommandHistory.add(new DrawCommand(shape));
     view.gui.Frame.addToFrame(shape);
     Canvas.repaint();
+  }
+
+  public void undo(){
+    if(CommandHistory.undo()){
+      Canvas.repaint();
+    }
+  }
+
+  public void redo(){
+    if(CommandHistory.redo()){
+      Canvas.repaint();
+    }
   }
 
 }
