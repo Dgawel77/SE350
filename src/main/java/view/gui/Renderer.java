@@ -1,6 +1,5 @@
 package view.gui;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import model.interfaces.IShape;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ public class Renderer {
     for(IShape shape: Frame.IShapeStack){
       graphics.setColor(shape.getColor());
       graphics.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
-      log.debug("Drawing a shape in render");
     }
   }
 }

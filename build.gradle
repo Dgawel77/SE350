@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'java'
 }
 
 group 'edu.depaul'
@@ -15,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     def junitVersion = '5.7.1'
     def logbackVersion = '1.2.4'
 
@@ -55,4 +57,5 @@ test {
 check {
     finalizedBy packageDistribution
 }
+
 
