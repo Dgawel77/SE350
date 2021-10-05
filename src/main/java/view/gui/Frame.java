@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 public class Frame {
   public static final Stack<IShape> IShapeStack = new Stack<>();
   private static final Logger log = LoggerFactory.getLogger(Frame.class);
+
   public static boolean addToFrame(IShape _shape){
     log.debug("Just got a Shape");
     IShapeStack.push(_shape);

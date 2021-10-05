@@ -1,8 +1,6 @@
 package controller;
 import controller.command.CommandHistory;
-import java.awt.Canvas;
 import model.interfaces.IShape;
-import view.gui.Frame;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +19,7 @@ public class CommandController {
 
   public void drawAt(int _startX, int _startY, int _endX, int _endY){
     int[] nP = MouseCoordinateNormalizer.normalizeCords(_startX, _startY, _endX, _endY);
-    IShape shape = ShapeMaker.makeShape(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
-    CommandHistory.add(new DrawCommand(shape));
-    view.gui.Frame.addToFrame(shape);
+    ShapeMaker.makeShape(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
     Canvas.repaint();
   }
 
