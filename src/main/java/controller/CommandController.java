@@ -1,5 +1,7 @@
 package controller;
 import controller.command.CommandHistory;
+import controller.selection.Selection;
+import model.persistence.UserChoicesImpl;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,14 +10,31 @@ public class CommandController {
   private static final Logger log = LoggerFactory.getLogger(CommandController.class);
   private final CommandFactory CommandMaker;
   private final PaintCanvas Canvas;
+  private final UserChoicesImpl Choices;
+  private Selection currentSelection;
 
-  public CommandController(CommandFactory _CommandFactory, PaintCanvas _Canvas){
+  public CommandController(CommandFactory _CommandFactory, PaintCanvas _Canvas, UserChoicesImpl _Choices){
     this.CommandMaker = _CommandFactory;
     this.Canvas = _Canvas;
+    this.Choices = _Choices;
   }
 
   public void pressedAt(Point Start, Point End){
-    drawAt(Start, End);
+    if (Start.equals(End)){
+      System.out.println("Click!");
+      return;
+    }
+    switch(Choices.getActiveMouseMode()){
+      case DRAW:
+        drawAt(Start, End);
+        break;
+      case MOVE:
+        moveSelection(Start.x-End.x, Start.y- End.y);
+        break;
+      case SELECT:
+        selectAt(Start, End);
+        break;
+    }
   }
 
   public void drawAt(Point Start, Point End){
@@ -23,6 +42,19 @@ public class CommandController {
     CommandMaker.MakeDrawCommand(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
     Canvas.repaint();
   }
+
+  public void selectAt(Point Start, Point End){
+    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
+    Selection Select = new Selection(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
+    currentSelection = Select;
+    Select.print();
+    System.out.println();
+  }
+
+  public void moveSelection(int xChange, int yChange){
+    return;
+  }
+
 
   public void undo(){
     if(CommandHistory.undo()){

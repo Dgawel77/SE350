@@ -2,6 +2,7 @@ package model.shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Shape;
 import model.interfaces.IShape;
 import model.region.Region;
 
@@ -29,4 +30,5 @@ abstract class ShapeImpl implements IShape {
   public int getHeight(){return this.height;}
   public int getX(){return this.x;}
   public int getY(){return this.y;}
+  public Region getRegion(){return this.region;}
 }

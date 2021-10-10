@@ -12,7 +12,6 @@ public class Renderer {
     for(IShape shape: Frame.IShapeStack){
       graphics.setColor(shape.getColor());
       shape.draw(graphics);
-      //graphics.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
     }
   }
 }
