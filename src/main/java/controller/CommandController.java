@@ -14,8 +14,12 @@ public class CommandController {
     this.Canvas = _Canvas;
   }
 
-  public void drawAt(int _startX, int _startY, int _endX, int _endY){
-    int[] nP = MouseCoordinateNormalizer.normalizeCords(_startX, _startY, _endX, _endY);
+  public void pressedAt(Point Start, Point End){
+    drawAt(Start, End);
+  }
+
+  public void drawAt(Point Start, Point End){
+    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
     CommandMaker.MakeDrawCommand(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
     Canvas.repaint();
   }

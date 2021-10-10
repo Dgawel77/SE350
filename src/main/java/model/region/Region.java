@@ -1,15 +1,13 @@
 package model.region;
 
+import controller.Point;
+
 public class Region {
-  int sx;
-  int sy;
-  int ex;
-  int ey;
+  Point Start;
+  Point End;
 
   public Region(int x, int y, int width, int height) {
-    this.sx = x;
-    this.sy = y;
-    this.ex = x + width;
-    this.ey = y + height;
+    this.Start = new Point(x, y);
+    this.End = new Point(x+width, y+height);
   }
 }

@@ -6,8 +6,8 @@ public class RegionChecker {
   }
 
   public static boolean areIntersecting(Region a, Region b){
-    boolean withinX = between(b.sx, a.sx, b.ex) || between(b.sx, a.ex, b.ex);
-    boolean withinY = between(b.sy, a.sy, b.ey) || between(b.sy, a.ey, b.ey);
+    boolean withinX = between(b.Start.x, a.Start.x, b.End.x) || between(b.Start.x, a.End.x, b.End.x);
+    boolean withinY = between(b.Start.y, a.Start.y, b.End.y) || between(b.Start.y, a.End.y, b.End.y);
     return withinX && withinY;
   }
 }

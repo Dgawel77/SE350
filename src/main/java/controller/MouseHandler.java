@@ -13,10 +13,7 @@ import org.slf4j.LoggerFactory;
 public class MouseHandler extends MouseAdapter {
   private static final Logger log = LoggerFactory.getLogger(MouseHandler.class);
   private CommandController controller;
-  public int startX;
-  public int startY;
-  public int endX;
-  public int endY;
+  private Point StartPoint;
 
   public MouseHandler(CommandController _controller){
     this.controller = _controller;
@@ -24,15 +21,13 @@ public class MouseHandler extends MouseAdapter {
 
   @Override
   public void mousePressed(MouseEvent e) {
-    startX = e.getX();
-    startY = e.getY();
+    StartPoint = new Point(e.getX(), e.getY());
   }
 
   @Override
   public void mouseReleased(MouseEvent e) {
-    endX = e.getX();
-    endY = e.getY();
-    controller.drawAt(startX, startY, endX, endY);
+    Point EndPoint = new Point(e.getX(), e.getY());
+    controller.pressedAt(StartPoint, EndPoint);
   }
 
 }

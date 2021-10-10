@@ -3,6 +3,7 @@ package model.shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 import model.interfaces.IShape;
+import model.region.Region;
 
 abstract class ShapeImpl implements IShape {
   int x;
@@ -10,6 +11,7 @@ abstract class ShapeImpl implements IShape {
   int width;
   int height;
   Color sColor;
+  Region region;
 
   public ShapeImpl(int _x, int _y, int _width, int _height, Color _sColor){
     this.x = _x;
@@ -17,6 +19,7 @@ abstract class ShapeImpl implements IShape {
     this.width = _width;
     this.height = _height;
     this.sColor = _sColor;
+    this.region = new Region(_x, _y, _width, _height);
   }
 
   public void draw(Graphics graphics){}
