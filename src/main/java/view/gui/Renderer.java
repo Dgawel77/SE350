@@ -11,7 +11,8 @@ public class Renderer {
   public static void render(Graphics graphics){
     for(IShape shape: Frame.IShapeStack){
       graphics.setColor(shape.getColor());
-      graphics.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+      shape.draw(graphics);
+      //graphics.fillRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
     }
   }
 }

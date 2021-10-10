@@ -12,6 +12,14 @@ public class ShapeFactory {
   }
 
   public IShape makeShape(int x, int y, int width, int height){
-    return new Rectangle(x, y, width, height, choices.getActivePrimaryColor().AWTcolor);
+    switch (choices.getActiveShapeType()){
+      case ELLIPSE:
+        return new Ellipse(x, y, width, height, choices.getActivePrimaryColor().AWTcolor);
+      case TRIANGLE:
+        return new Triangle(x, y, width, height, choices.getActivePrimaryColor().AWTcolor);
+      case RECTANGLE:
+        return new Rectangle(x, y, width, height, choices.getActivePrimaryColor().AWTcolor);
+    }
+    return null;
   }
 }

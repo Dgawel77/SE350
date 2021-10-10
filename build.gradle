@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'java'
+    id 'application'
 }
 
 group 'edu.depaul'
@@ -58,4 +59,10 @@ check {
     finalizedBy packageDistribution
 }
 
+ext{
+    javaMainClass = "main.Main"
+}
 
+application{
+    mainClassName = javaMainClass
+}
