@@ -21,7 +21,7 @@ public class CommandController {
 
   public void pressedAt(Point Start, Point End){
     if (Start.equals(End)){
-      System.out.println("Click!");
+      currentSelection = null;
       return;
     }
     switch(Choices.getActiveMouseMode()){
@@ -29,7 +29,7 @@ public class CommandController {
         drawAt(Start, End);
         break;
       case MOVE:
-        moveSelection(Start.x-End.x, Start.y- End.y);
+        moveSelection(End.x-Start.x, End.y-Start.y);
         break;
       case SELECT:
         selectAt(Start, End);
@@ -46,13 +46,16 @@ public class CommandController {
   public void selectAt(Point Start, Point End){
     int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
     Selection Select = new Selection(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
-    currentSelection = Select;
+    this.currentSelection = Select;
     Select.print();
     System.out.println();
   }
 
   public void moveSelection(int xChange, int yChange){
-    return;
+    if (currentSelection != null) {
+      CommandMaker.MakeMoveCommand(xChange, yChange, currentSelection);
+      Canvas.repaint();
+    }
   }
 
 

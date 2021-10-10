@@ -2,17 +2,16 @@ package model.shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Shape;
 import model.interfaces.IShape;
 import model.region.Region;
 
 abstract class ShapeImpl implements IShape {
-  int x;
-  int y;
-  int width;
-  int height;
-  Color sColor;
-  Region region;
+  public int x;
+  public int y;
+  public int width;
+  public int height;
+  public Color sColor;
+  public Region region;
 
   public ShapeImpl(int _x, int _y, int _width, int _height, Color _sColor){
     this.x = _x;
@@ -31,4 +30,10 @@ abstract class ShapeImpl implements IShape {
   public int getX(){return this.x;}
   public int getY(){return this.y;}
   public Region getRegion(){return this.region;}
+
+  public void move(int xChange, int yChange){
+    this.x += xChange;
+    this.y += yChange;
+    this.region.move(xChange, yChange);
+  }
 }

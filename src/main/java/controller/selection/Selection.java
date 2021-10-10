@@ -7,12 +7,11 @@ import model.region.Region;
 import view.gui.Frame;
 
 public class Selection {
-  private List<IShape> SelectionList;
-  Region selectionRegion;
+  public List<IShape> SelectionList;
 
   public Selection(int x, int y, int width, int height){
-    this.SelectionList = new ArrayList<IShape>();
-    this.selectionRegion = new Region(x, y, width, height);
+    this.SelectionList = new ArrayList<>();
+    Region selectionRegion = new Region(x, y, width, height);
     for(IShape shape : Frame.IShapeStack){
       if (selectionRegion.intersects(shape.getRegion())){
         SelectionList.add(shape);

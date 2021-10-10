@@ -12,5 +12,5 @@ public interface IShape {
   int getX();
   int getY();
   void draw(Graphics graphics);
-
+  void move(int xc, int yc);
 }

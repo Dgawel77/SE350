@@ -18,4 +18,12 @@ public class Region {
       return false;
     return true;
   }
+
+  public void move(int xChange, int yChange){
+    Start.x += xChange;
+    Start.y += yChange;
+    End.x += xChange;
+    End.y += yChange;
+  }
+
 }
