@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
  * should be added here.
  */
 public class PaintCanvas extends JComponent {
-
-    // part of the example below.  Please removed when the example is removed
     private int paintCount = 0;
 
     private static final Logger log = LoggerFactory.getLogger(PaintCanvas.class);
@@ -32,6 +30,6 @@ public class PaintCanvas extends JComponent {
         Renderer.render(graphics2d);
 
         paintCount++;
-        log.debug("time to paint " + paintCount);
+        //log.debug("time to paint " + paintCount);
     }
 }

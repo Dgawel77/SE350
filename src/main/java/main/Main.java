@@ -27,7 +27,7 @@ public class Main {
 
         EventConnector controller = new EventConnectorImpl(uiModule, appState, ComController);
 
-        KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
+        KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState, ComController);
         keys.setup();
 
         MouseHandler mouse = new MouseHandler(ComController);

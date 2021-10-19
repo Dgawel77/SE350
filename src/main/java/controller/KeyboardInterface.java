@@ -1,5 +1,7 @@
 package controller;
 
+import static controller.command.CommandHistory.undo;
+
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
 import javax.swing.AbstractAction;
@@ -10,6 +12,7 @@ import model.MouseMode;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.interfaces.UserChoices;
+import view.EventName;
 
 /**
  * Provides a keyboard interface for:
@@ -35,10 +38,12 @@ import model.interfaces.UserChoices;
 public class KeyboardInterface {
   private JComponent target;
   private UserChoices userChoices;
+  private CommandController CmdController;
 
-  public KeyboardInterface(JComponent target, UserChoices userChoices) {
+  public KeyboardInterface(JComponent target, UserChoices userChoices, CommandController CmdController) {
     this.target = target;
     this.userChoices = userChoices;
+    this.CmdController = CmdController;
   }
 
   public void setup() {
@@ -57,6 +62,10 @@ public class KeyboardInterface {
     setupAction("filled", "control F", ShapeShadingType.FILLED_IN, (type) -> userChoices.setActiveShadingType((ShapeShadingType) type));
     setupAction("outlined", "control O", ShapeShadingType.OUTLINE, (type) -> userChoices.setActiveShadingType((ShapeShadingType) type));
     setupAction("both", "control B", ShapeShadingType.OUTLINE_AND_FILLED_IN, (type) -> userChoices.setActiveShadingType((ShapeShadingType) type));
+
+    //undo redo
+    setupAction("undo", "control Z", EventName.UNDO, (type) -> CmdController.undo());
+    setupAction("undo", "control Z", EventName.REDO, (type) -> CmdController.redo());
 
   }
 
