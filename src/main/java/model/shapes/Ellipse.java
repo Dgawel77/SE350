@@ -10,7 +10,7 @@ public class Ellipse extends ShapeImpl {
 
   @Override
   public void draw(Graphics graphics){
-    graphics.drawOval(x, y, width, height);
-    graphics.fillOval(x, y, width, height);
+    graphics.drawOval(getX(), getY(), getWidth(), getHeight());
+    graphics.fillOval(getX(), getY(), getWidth(), getHeight());
   }
 }

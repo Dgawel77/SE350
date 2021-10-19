@@ -6,18 +6,10 @@ import model.interfaces.IShape;
 import model.region.Region;
 
 abstract class ShapeImpl implements IShape {
-  public int x;
-  public int y;
-  public int width;
-  public int height;
   public Color sColor;
   public Region region;
 
   public ShapeImpl(int _x, int _y, int _width, int _height, Color _sColor){
-    this.x = _x;
-    this.y = _y;
-    this.width = _width;
-    this.height = _height;
     this.sColor = _sColor;
     this.region = new Region(_x, _y, _width, _height);
   }
@@ -25,15 +17,13 @@ abstract class ShapeImpl implements IShape {
   public void draw(Graphics graphics){}
 
   public Color getColor(){return this.sColor;}
-  public int getWidth(){return this.width;}
-  public int getHeight(){return this.height;}
-  public int getX(){return this.x;}
-  public int getY(){return this.y;}
+  public int getWidth(){return this.region.End.x - this.region.Start.x;}
+  public int getHeight(){return this.region.End.y - this.region.Start.y;}
+  public int getX(){return this.region.Start.x;}
+  public int getY(){return this.region.Start.y;}
   public Region getRegion(){return this.region;}
 
   public void move(int xChange, int yChange){
-    this.x += xChange;
-    this.y += yChange;
     this.region.move(xChange, yChange);
   }
 }

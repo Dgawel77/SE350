@@ -20,44 +20,34 @@ public class CommandController {
   }
 
   public void pressedAt(Point Start, Point End){
-    if (Start.equals(End)){
-      currentSelection = null;
-      return;
-    }
+    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
     switch(Choices.getActiveMouseMode()){
       case DRAW:
-        drawAt(Start, End);
+        drawAt(nP);
         break;
       case MOVE:
         moveSelection(End.x-Start.x, End.y-Start.y);
         break;
       case SELECT:
-        selectAt(Start, End);
+        selectAt(nP);
         break;
     }
   }
 
-  public void drawAt(Point Start, Point End){
-    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
+  public void drawAt(int[] nP){
     CommandMaker.MakeDrawCommand(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
     Canvas.repaint();
   }
 
-  public void selectAt(Point Start, Point End){
-    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
-    Selection Select = new Selection(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
-    this.currentSelection = Select;
-    Select.print();
-    System.out.println();
+  public void selectAt(int[] nP){
+    this.currentSelection = new Selection(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
   }
 
   public void moveSelection(int xChange, int yChange){
-    if (currentSelection != null) {
-      CommandMaker.MakeMoveCommand(xChange, yChange, currentSelection);
-      Canvas.repaint();
-    }
+    if (currentSelection.SelectionList.isEmpty()) return;
+    CommandMaker.MakeMoveCommand(xChange, yChange, currentSelection);
+    Canvas.repaint();
   }
-
 
   public void undo(){
     if(CommandHistory.undo()){

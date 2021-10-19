@@ -11,7 +11,8 @@ public class Triangle extends ShapeImpl {
 
   @Override
   public void draw(Graphics graphics){
-    Polygon p = new Polygon(new int[]{x+(width/2), x+width, x}, new int[]{y, y+height, y+height}, 3);
+    Polygon p = new Polygon(new int[]{getX()+(getWidth()/2), getX()+getWidth(), getX()},
+                            new int[]{getY(), getY()+getHeight(), getY()+getHeight()}, 3);
     graphics.drawPolygon(p);
     graphics.fillPolygon(p);
   }

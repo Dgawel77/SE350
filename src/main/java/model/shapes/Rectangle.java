@@ -10,7 +10,7 @@ public class Rectangle extends ShapeImpl{
 
   @Override
   public void draw(Graphics graphics){
-    graphics.fillRect(x, y, width, height);
+    graphics.fillRect(getX(), getY(), getWidth(), getHeight());
   }
 
 }

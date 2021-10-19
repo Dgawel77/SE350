@@ -6,9 +6,9 @@ import controller.selection.Selection;
 import model.interfaces.IShape;
 
 public class MoveCommand implements Command, Undoable{
-  Selection select;
-  int xChange;
-  int yChange;
+  private Selection select;
+  private int xChange;
+  private int yChange;
 
 
   public MoveCommand(int xChange, int yChange, Selection select) {
