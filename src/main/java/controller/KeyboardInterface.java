@@ -65,7 +65,7 @@ public class KeyboardInterface {
 
     //undo redo
     setupAction("undo", "control Z", EventName.UNDO, (type) -> CmdController.undo());
-    setupAction("undo", "control Z", EventName.REDO, (type) -> CmdController.redo());
+    setupAction("redo", "control Y", EventName.REDO, (type) -> CmdController.redo());
 
   }
 
