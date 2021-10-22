@@ -23,7 +23,7 @@ public class Main {
 
         ShapeFactory ShapeFac = new ShapeFactory(appState);
         CommandFactory CommandFac = new CommandFactory(ShapeFac, appState);
-        CommandController ComController = new CommandController(CommandFac, paintCanvas, appState);
+        CommandController ComController = new CommandController(CommandFac, paintCanvas);
 
         EventConnector controller = new EventConnectorImpl(uiModule, appState, ComController);
 

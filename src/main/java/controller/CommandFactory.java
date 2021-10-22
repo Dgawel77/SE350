@@ -1,11 +1,9 @@
 package controller;
 
-import controller.command.CommandHistory;
 import controller.command.DrawCommand;
 import controller.command.MoveCommand;
 import controller.command.SelectionCommand;
 import controller.interfaces.Command;
-import controller.selection.Selection;
 import model.ShapeFactory;
 import model.persistence.UserChoicesImpl;
 
@@ -32,18 +30,15 @@ public class CommandFactory {
   }
 
   public Command MakeDrawCommand(int x, int y, int width, int height){
-    DrawCommand Draw = new DrawCommand(ShapeMaker.makeShape(x, y, width, height));
-    return Draw;
+    return new DrawCommand(ShapeMaker.makeShape(x, y, width, height));
   }
 
   public Command MakeMoveCommand(int xChange, int yChange){
-    MoveCommand Move = new MoveCommand(xChange, yChange, SelectionCommand.Select);
-    return Move;
+    return new MoveCommand(xChange, yChange, SelectionCommand.Select);
   }
 
   public Command MakeSelectionCommand(int x, int y, int width, int height){
-    SelectionCommand Select = new SelectionCommand(x, y, width, height);
-    return Select;
+    return new SelectionCommand(x, y, width, height);
   }
 
 }

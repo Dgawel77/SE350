@@ -9,6 +9,7 @@ public class SelectionCommand implements Command {
     private int y;
     private int width;
     private int height;
+
     public SelectionCommand(int x, int y, int width, int height){
         this.x = x;
         this.y = y;
