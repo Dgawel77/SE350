@@ -3,6 +3,7 @@ package controller.command;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import model.interfaces.IShape;
+import view.gui.Frame;
 
 public class DrawCommand implements Undoable, Command {
   private IShape shape;
@@ -16,14 +17,17 @@ public class DrawCommand implements Undoable, Command {
 
   @Override
   public void undo(){
-    view.gui.Frame.removeFromFrame();
+    Frame.removeFromFrame();
   }
 
   @Override
   public void redo(){
-    view.gui.Frame.addToFrame(this.shape);
+    Frame.addToFrame(this.shape);
   }
 
   @Override
-  public void run(){ view.gui.Frame.addToFrame(this.shape); }
+  public void run(){
+    Frame.addToFrame(this.shape);
+    CommandHistory.add(this);
+  }
 }

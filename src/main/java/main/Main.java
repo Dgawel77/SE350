@@ -22,7 +22,7 @@ public class Main {
         UserChoicesImpl appState = new UserChoicesImpl(uiModule);
 
         ShapeFactory ShapeFac = new ShapeFactory(appState);
-        CommandFactory CommandFac = new CommandFactory(ShapeFac);
+        CommandFactory CommandFac = new CommandFactory(ShapeFac, appState);
         CommandController ComController = new CommandController(CommandFac, paintCanvas, appState);
 
         EventConnector controller = new EventConnectorImpl(uiModule, appState, ComController);

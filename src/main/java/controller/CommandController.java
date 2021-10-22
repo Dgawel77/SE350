@@ -1,5 +1,6 @@
 package controller;
 import controller.command.CommandHistory;
+import controller.interfaces.Command;
 import controller.selection.Selection;
 import model.persistence.UserChoicesImpl;
 import view.gui.PaintCanvas;
@@ -20,32 +21,8 @@ public class CommandController {
   }
 
   public void pressedAt(Point Start, Point End){
-    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
-    switch(Choices.getActiveMouseMode()){
-      case DRAW:
-        drawAt(nP);
-        break;
-      case MOVE:
-        moveSelection(End.x-Start.x, End.y-Start.y);
-        break;
-      case SELECT:
-        selectAt(nP);
-        break;
-    }
-  }
-
-  public void drawAt(int[] nP){
-    CommandMaker.MakeDrawCommand(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
-    Canvas.repaint();
-  }
-
-  public void selectAt(int[] nP){
-    this.currentSelection = new Selection(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
-  }
-
-  public void moveSelection(int xChange, int yChange){
-    if (currentSelection.SelectionList.isEmpty()) return;
-    CommandMaker.MakeMoveCommand(xChange, yChange, currentSelection);
+    Command cmd = CommandMaker.MakeCommand(Start, End);
+    cmd.run();
     Canvas.repaint();
   }
 

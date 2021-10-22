@@ -22,6 +22,7 @@ public class MoveCommand implements Command, Undoable{
     for(IShape Shape : select.SelectionList){
       Shape.move(xChange, yChange);
     }
+    CommandHistory.add(this);
   }
 
   @Override
