@@ -34,5 +34,7 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, userChoices::setActiveStartAndEndPointMode);
         uiModule.addEvent(EventName.UNDO, CmdController::undo);
         uiModule.addEvent(EventName.REDO, CmdController::redo);
+        uiModule.addEvent(EventName.COPY, CmdController::copy);
+        uiModule.addEvent(EventName.PASTE, CmdController::paste);
     }
 }

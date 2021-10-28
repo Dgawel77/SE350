@@ -1,7 +1,10 @@
 package controller;
 
 import controller.command.CommandHistory;
+import controller.command.CopyCommand;
+import controller.command.SelectionCommand;
 import controller.interfaces.Command;
+import model.interfaces.IShape;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +35,15 @@ public class CommandController {
     if(CommandHistory.redo()){
       Canvas.repaint();
     }
+  }
+
+  public void copy(){
+    Command cmd = CommandMaker.MakeCopyCommand();
+    cmd.run();
+  }
+
+  public void paste(){
+    Command cmd = CommandMaker.MakePasteCommand();
   }
 
 }

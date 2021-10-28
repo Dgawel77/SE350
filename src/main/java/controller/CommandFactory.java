@@ -1,7 +1,9 @@
 package controller;
 
+import controller.command.CopyCommand;
 import controller.command.DrawCommand;
 import controller.command.MoveCommand;
+import controller.command.PasteCommand;
 import controller.command.SelectionCommand;
 import controller.interfaces.Command;
 import model.ShapeFactory;
@@ -39,6 +41,14 @@ public class CommandFactory {
 
   public Command MakeSelectionCommand(int x, int y, int width, int height){
     return new SelectionCommand(x, y, width, height);
+  }
+
+  public Command MakeCopyCommand(){
+    return new CopyCommand(SelectionCommand.Select);
+  }
+
+  public Command MakePasteCommand(){
+    return new PasteCommand(CopyCommand.currentCopySelection);
   }
 
 }

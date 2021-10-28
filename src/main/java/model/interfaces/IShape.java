@@ -11,6 +11,7 @@ public interface IShape {
   int getHeight();
   int getX();
   int getY();
+  IStrategy getStrategy();
   void draw(Graphics graphics);
   void move(int xc, int yc);
 }
