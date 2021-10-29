@@ -11,9 +11,9 @@ public class Shape implements IShape {
   public Region region;
   public IStrategy strategy;
 
-  public Shape(int _x, int _y, int _width, int _height, Color _sColor, IStrategy drawStrategy){
+  public Shape(Region _Region, Color _sColor, IStrategy drawStrategy){
     this.sColor = _sColor;
-    this.region = new Region(_x, _y, _width, _height);
+    this.region = _Region;
     this.strategy = drawStrategy;
   }
 

@@ -3,6 +3,7 @@ package model;
 import model.interfaces.IShape;
 import model.interfaces.IStrategy;
 import model.persistence.UserChoicesImpl;
+import model.region.Region;
 import model.shapes.*;
 import model.shapes.decorators.Fill;
 import model.shapes.decorators.Outline;
@@ -30,7 +31,7 @@ public class ShapeFactory {
         strategy = new rectangleStrategy();
         break;
     }
-    return decorateShape(new Shape(x, y, width, height, choices.getActivePrimaryColor().AWTcolor, strategy));
+    return decorateShape(new Shape(new Region(x, y, width, height), choices.getActivePrimaryColor().AWTcolor, strategy));
   }
 
   public IShape decorateShape(IShape shape){
