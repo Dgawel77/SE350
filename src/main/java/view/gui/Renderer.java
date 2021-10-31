@@ -1,6 +1,6 @@
 package view.gui;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import model.interfaces.IShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +8,8 @@ import org.slf4j.LoggerFactory;
 public class Renderer {
   private static final Logger log = LoggerFactory.getLogger(Renderer.class);
 
-  public static void render(Graphics graphics){
+  public static void render(Graphics2D graphics){
     for(IShape shape: Frame.IShapeStack){
-      graphics.setColor(shape.getColor());
       shape.draw(graphics);
     }
   }

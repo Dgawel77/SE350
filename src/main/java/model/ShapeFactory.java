@@ -1,15 +1,12 @@
 package model;
 
 import model.interfaces.IShape;
-import model.interfaces.IStrategy;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
 import model.shapes.*;
-import model.shapes.decorators.Fill;
-import model.shapes.decorators.Outline;
-import model.shapes.strategies.ellipseStrategy;
-import model.shapes.strategies.rectangleStrategy;
-import model.shapes.strategies.triangleStrategy;
+import model.shapes.experts.ellipseExpert;
+import model.shapes.experts.rectangleExpert;
+import model.shapes.experts.triangleExpert;
 
 public class ShapeFactory {
   private UserChoicesImpl choices;
@@ -19,30 +16,71 @@ public class ShapeFactory {
   }
 
   public IShape makeShape(int x, int y, int width, int height){
-    IStrategy strategy = null;
+    IShape Shape = new Shape(
+        new Region(x, y, width, height),
+        choices.getActivePrimaryColor().AWTcolor,
+        choices.getActiveSecondaryColor().AWTcolor);
+
     switch (choices.getActiveShapeType()){
       case ELLIPSE:
-        strategy = new ellipseStrategy();
+        setEllipseStrategies(Shape);
         break;
       case TRIANGLE:
-        strategy = new triangleStrategy();
+        setTriangleStrategies(Shape);
         break;
       case RECTANGLE:
-        strategy = new rectangleStrategy();
+        setRectangleStrategies(Shape);
         break;
     }
-    return decorateShape(new Shape(new Region(x, y, width, height), choices.getActivePrimaryColor().AWTcolor, strategy));
+    return Shape;
   }
 
-  public IShape decorateShape(IShape shape){
+  public void setEllipseStrategies(IShape Shape){
+    switch (choices.getActiveShapeShadingType()) {
+      case OUTLINE:
+        Shape.setOutlineStrategy(ellipseExpert::drawOutline);
+        break;
+      case FILLED_IN:
+        Shape.setFillStrategy(ellipseExpert::drawFilled);
+        break;
+      case OUTLINE_AND_FILLED_IN:
+        Shape.setOutlineStrategy(ellipseExpert::drawOutline);
+        Shape.setFillStrategy(ellipseExpert::drawFilled);
+        break;
+    }
+    Shape.setSelectionStrategy(ellipseExpert::drawSelection);
+  }
+
+  public void setTriangleStrategies(IShape Shape) {
+    switch (choices.getActiveShapeShadingType()) {
+      case OUTLINE:
+        Shape.setOutlineStrategy(triangleExpert::drawOutline);
+        break;
+      case FILLED_IN:
+        Shape.setFillStrategy(triangleExpert::drawFilled);
+        break;
+      case OUTLINE_AND_FILLED_IN:
+        Shape.setOutlineStrategy(triangleExpert::drawOutline);
+        Shape.setFillStrategy(triangleExpert::drawFilled);
+        break;
+    }
+    Shape.setSelectionStrategy(triangleExpert::drawSelection);
+  }
+
+  public void setRectangleStrategies(IShape Shape){
     switch (choices.getActiveShapeShadingType()){
       case OUTLINE:
-        return new Outline(shape);
+        Shape.setOutlineStrategy(rectangleExpert::drawOutline);
+        break;
       case FILLED_IN:
-        return new Fill(shape);
+        Shape.setFillStrategy(rectangleExpert::drawFilled);
+        break;
       case OUTLINE_AND_FILLED_IN:
-        return new Outline(new Fill(shape));
+        Shape.setOutlineStrategy(rectangleExpert::drawOutline);
+        Shape.setFillStrategy(rectangleExpert::drawFilled);
+        break;
     }
-    return shape;
+    Shape.setSelectionStrategy(rectangleExpert::drawSelection);
   }
+
 }
