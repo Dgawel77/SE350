@@ -2,11 +2,14 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.selection.Selection;
+import java.util.List;
+import model.interfaces.IShape;
+import model.shapes.Shape;
 
 public class CopyCommand implements Command {
-  public static Selection currentCopySelection;
+  public static List<IShape> currentCopySelection;
   public Selection Select;
-  public int offset;
+  public static int offset;
 
   public CopyCommand(Selection _Select){
     this.Select = _Select;
@@ -15,6 +18,13 @@ public class CopyCommand implements Command {
 
   @Override
   public void run(){
-    currentCopySelection = this.Select;
+    for(IShape s : Select.SelectionList) {
+      currentCopySelection.add(new Shape(s));
+    }
   }
+
+  public static void increaseOffset(){
+    offset += 25;
+  }
+
 }

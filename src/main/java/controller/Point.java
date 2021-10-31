@@ -9,6 +9,11 @@ public class Point {
     this.y = y;
   }
 
+  public Point(Point p) {
+    this.x = p.x;
+    this.y = p.y;
+  }
+
   @Override
   public boolean equals(Object o){
     if (!(o instanceof Point)) return false;

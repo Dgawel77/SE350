@@ -12,9 +12,8 @@ public class triangleExpert {
     int width = Shape.getWidth();
     int height = Shape.getHeight();
 
-    Polygon p = new Polygon(new int[]{x+(width/2), x+width, x},
-                            new int[]{y, y+height, y+height}, 3);
-    return p;
+    return new Polygon(new int[]{x+(width/2), x+width, x},
+                       new int[]{y, y+height, y+height}, 3);
   }
 
   public static void drawFilled(Graphics2D graphics, IShape Shape){

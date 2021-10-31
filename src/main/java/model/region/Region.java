@@ -11,6 +11,11 @@ public class Region {
     this.End = new Point(x+width, y+height);
   }
 
+  public Region(Region r) {
+    this.Start = new Point(r.Start);
+    this.End = new Point(r.End);
+  }
+
   public boolean intersects(Region r){
     if (this.Start.x > r.End.x || r.Start.x > this.End.x)
       return false;

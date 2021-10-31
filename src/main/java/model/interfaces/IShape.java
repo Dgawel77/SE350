@@ -14,6 +14,7 @@ public interface IShape {
   int getX();
   int getY();
   void draw(Graphics2D graphics);
+  void drawSelection(Graphics2D graphics);
   void move(int xc, int yc);
   void setOutlineStrategy(IStrategy outlineStrategy);
   void setFillStrategy(IStrategy fillStrategy);

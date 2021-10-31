@@ -44,6 +44,8 @@ public class CommandController {
 
   public void paste(){
     Command cmd = CommandMaker.MakePasteCommand();
+    cmd.run();
+    Canvas.repaint();
   }
 
 }

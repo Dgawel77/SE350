@@ -4,7 +4,7 @@ import controller.interfaces.Command;
 import controller.selection.Selection;
 
 public class SelectionCommand implements Command {
-    public static Selection Select;
+    public static Selection Select = new Selection(0, 0, 0, 0);
     private int x;
     private int y;
     private int width;

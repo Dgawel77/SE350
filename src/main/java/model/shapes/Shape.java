@@ -26,10 +26,23 @@ public class Shape implements IShape {
     selectionStrategy = new nullShapeDrawer();
   }
 
+  public Shape(IShape r){
+    this.pColor = r.getPrimaryColor();
+    this.sColor = r.getSecondaryColor();
+    this.region = new Region(r.getRegion());
+    outlineStrategy = new nullShapeDrawer();
+    fillStrategy = new nullShapeDrawer();
+    selectionStrategy = new nullShapeDrawer();
+  }
+
   @Override
   public void draw(Graphics2D graphics){
     outlineStrategy.draw(graphics, this);
     fillStrategy.draw(graphics, this);
+  }
+
+  @Override
+  public void drawSelection(Graphics2D graphics){
     selectionStrategy.draw(graphics, this);
   }
 
