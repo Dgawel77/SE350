@@ -1,5 +1,6 @@
 package view.gui;
 
+import controller.command.SelectionCommand;
 import java.util.Stack;
 import model.interfaces.IShape;
 import org.slf4j.Logger;
@@ -17,7 +18,8 @@ public class Frame {
   public static boolean removeFromFrame(){
     boolean result = !IShapeStack.empty();
     if (result) {
-      IShapeStack.pop();
+      IShape removed = IShapeStack.pop();
+      SelectionCommand.Select.SelectionList.remove(removed);
     }
     return result;
   }

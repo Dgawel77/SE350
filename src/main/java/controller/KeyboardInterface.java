@@ -67,6 +67,9 @@ public class KeyboardInterface {
     setupAction("undo", "control Z", EventName.UNDO, (type) -> CmdController.undo());
     setupAction("redo", "control Y", EventName.REDO, (type) -> CmdController.redo());
 
+    //copy paste
+    setupAction("copy", "control C", EventName.COPY, (type) -> CmdController.copy());
+    setupAction("paste", "control V", EventName.PASTE, (type) -> CmdController.paste());
   }
 
   private void setupAction(String name, String strokeName, Object mode, Consumer c) {

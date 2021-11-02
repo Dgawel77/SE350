@@ -15,6 +15,8 @@ import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
   private ArrayList<IShape> copyList;
+  private ArrayList<IShape> additionList = new ArrayList<>();
+  private int offset = CopyCommand.offset;
 
   public PasteCommand(Selection _Select){
     copyList = new ArrayList<>(_Select.SelectionList);
@@ -25,15 +27,16 @@ public class PasteCommand implements Command, Undoable {
     CommandHistory.add(this);
     for (IShape s : copyList){
       Shape toScreen = new Shape(s);
-      toScreen.move(CopyCommand.offset, CopyCommand.offset);
+      toScreen.move(offset, offset);
       Frame.addToFrame(toScreen);
+      additionList.add(toScreen);
     }
     CopyCommand.changeOffset(25);
   }
 
   @Override
   public void undo() {
-    for (IShape s : copyList){
+    for (IShape s : additionList){
       Frame.removeFromFrame();
     }
     CopyCommand.changeOffset(-25);
@@ -41,10 +44,8 @@ public class PasteCommand implements Command, Undoable {
 
   @Override
   public void redo() {
-    for (IShape s : copyList) {
-      Shape toScreen = new Shape(s);
-      toScreen.move(CopyCommand.offset, CopyCommand.offset);
-      Frame.addToFrame(toScreen);
+    for (IShape s : additionList) {
+      Frame.addToFrame(s);
     }
     CopyCommand.changeOffset(25);
   }
