@@ -2,23 +2,18 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.selection.Selection;
+import model.region.Region;
 
 public class SelectionCommand implements Command {
-    public static Selection Select = new Selection(0, 0, 0, 0);
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    public static Selection currentSelect = new Selection(new Region(-100, -100, 0, 0));
+    private Region region;
 
-    public SelectionCommand(int x, int y, int width, int height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public SelectionCommand(Region region){
+        this.region = region;
     }
 
     public void run(){
-        Select = new Selection(x, y, width, height);
+        currentSelect = new Selection(region);
     }
 
 }

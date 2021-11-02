@@ -1,7 +1,6 @@
 package controller.selection;
 
 import java.util.ArrayList;
-import java.util.List;
 import model.interfaces.IShape;
 import model.region.Region;
 import view.gui.Frame;
@@ -9,13 +8,16 @@ import view.gui.Frame;
 public class Selection {
   public ArrayList<IShape> SelectionList = new ArrayList<>();
 
-  public Selection(int x, int y, int width, int height){
-    Region selectionRegion = new Region(x, y, width, height);
+  public Selection(Region region){
     for(IShape shape : Frame.IShapeStack){
-      if (selectionRegion.intersects(shape.getRegion())){
+      if (region.intersects(shape.getRegion())){
         SelectionList.add(shape);
       }
     }
+  }
+
+  public Selection(Selection select){
+    this.SelectionList = new ArrayList<>(select.SelectionList);
   }
 
   public void print(){

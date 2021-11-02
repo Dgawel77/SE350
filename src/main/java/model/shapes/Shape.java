@@ -11,19 +11,6 @@ public class Shape implements IShape {
   public Color pColor;
   public Color sColor;
   public Region region;
-
-  public IStrategy getOutlineStrategy() {
-    return outlineStrategy;
-  }
-
-  public IStrategy getFillStrategy() {
-    return fillStrategy;
-  }
-
-  public IStrategy getSelectionStrategy() {
-    return selectionStrategy;
-  }
-
   public IStrategy outlineStrategy;
   public IStrategy fillStrategy;
   public IStrategy selectionStrategy;
@@ -121,4 +108,20 @@ public class Shape implements IShape {
   public void setSelectionStrategy(IStrategy selectionStrategy) {
     this.selectionStrategy = selectionStrategy;
   }
+
+  @Override
+  public IStrategy getOutlineStrategy() {
+    return outlineStrategy;
+  }
+
+  @Override
+  public IStrategy getFillStrategy() {
+    return fillStrategy;
+  }
+
+  @Override
+  public IStrategy getSelectionStrategy() {
+    return selectionStrategy;
+  }
+
 }

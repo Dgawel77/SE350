@@ -15,9 +15,9 @@ public class ShapeFactory {
     choices = _choices;
   }
 
-  public IShape makeShape(int x, int y, int width, int height){
+  public IShape makeShape(Region region){
     IShape Shape = new Shape(
-        new Region(x, y, width, height),
+        region,
         choices.getActivePrimaryColor().AWTcolor,
         choices.getActiveSecondaryColor().AWTcolor);
 

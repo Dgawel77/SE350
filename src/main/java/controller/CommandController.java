@@ -1,10 +1,7 @@
 package controller;
 
 import controller.command.CommandHistory;
-import controller.command.CopyCommand;
-import controller.command.SelectionCommand;
 import controller.interfaces.Command;
-import model.interfaces.IShape;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

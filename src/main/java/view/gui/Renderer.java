@@ -12,7 +12,7 @@ public class Renderer {
   public static void render(Graphics2D graphics){
     for(IShape shape: Frame.IShapeStack){
       shape.draw(graphics);
-      if (SelectionCommand.Select.SelectionList.contains(shape)){
+      if (SelectionCommand.currentSelect.SelectionList.contains(shape)){
         shape.drawSelection(graphics);
       }
     }

@@ -1,37 +1,32 @@
 package controller.command;
 
-import controller.Point;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import controller.selection.Selection;
-import controller.selection.StandardContainers;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
 import model.interfaces.IShape;
-import model.region.Region;
 import model.shapes.Shape;
 import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
-  private ArrayList<IShape> copyList;
-  private ArrayList<IShape> additionList = new ArrayList<>();
-  private int offset = CopyCommand.offset;
+  private final ArrayList<IShape> additionList = new ArrayList<>();
 
   public PasteCommand(Selection _Select){
-    copyList = new ArrayList<>(_Select.SelectionList);
+    for (IShape s : _Select.SelectionList){
+      Shape newShape = new Shape(s);
+      int offset = CopyCommand.offset;
+      newShape.move(offset, offset);
+      additionList.add(newShape);
+    }
   }
 
   @Override
   public void run(){
     CommandHistory.add(this);
-    for (IShape s : copyList){
-      Shape toScreen = new Shape(s);
-      toScreen.move(offset, offset);
-      Frame.addToFrame(toScreen);
-      additionList.add(toScreen);
+    for (IShape s : additionList){
+      Frame.addToFrame(s);
     }
-    CopyCommand.changeOffset(25);
+    CopyCommand.incOffset();
   }
 
   @Override
@@ -39,7 +34,7 @@ public class PasteCommand implements Command, Undoable {
     for (IShape s : additionList){
       Frame.removeFromFrame();
     }
-    CopyCommand.changeOffset(-25);
+    CopyCommand.decOffset();
   }
 
   @Override
@@ -47,7 +42,7 @@ public class PasteCommand implements Command, Undoable {
     for (IShape s : additionList) {
       Frame.addToFrame(s);
     }
-    CopyCommand.changeOffset(25);
+    CopyCommand.incOffset();
   }
 
 }

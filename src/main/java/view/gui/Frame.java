@@ -19,7 +19,7 @@ public class Frame {
     boolean result = !IShapeStack.empty();
     if (result) {
       IShape removed = IShapeStack.pop();
-      SelectionCommand.Select.SelectionList.remove(removed);
+      SelectionCommand.currentSelect.SelectionList.remove(removed);
     }
     return result;
   }
