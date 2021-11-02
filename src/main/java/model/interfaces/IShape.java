@@ -19,4 +19,8 @@ public interface IShape {
   void setOutlineStrategy(IStrategy outlineStrategy);
   void setFillStrategy(IStrategy fillStrategy);
   void setSelectionStrategy(IStrategy selectionStrategy);
+  IStrategy getOutlineStrategy();
+  IStrategy getFillStrategy();
+  IStrategy getSelectionStrategy();
+
 }

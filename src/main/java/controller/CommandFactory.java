@@ -6,6 +6,7 @@ import controller.command.MoveCommand;
 import controller.command.PasteCommand;
 import controller.command.SelectionCommand;
 import controller.interfaces.Command;
+import controller.selection.StandardContainers;
 import model.ShapeFactory;
 import model.persistence.UserChoicesImpl;
 

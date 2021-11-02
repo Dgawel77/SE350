@@ -18,7 +18,7 @@ public class triangleExpert {
 
   public static void drawFilled(Graphics2D graphics, IShape Shape){
     graphics.setColor(Shape.getPrimaryColor());
-    graphics.fillPolygon(getPolygon(Shape));
+    graphics.fill(getPolygon(Shape));
   }
 
   public static void drawOutline(Graphics2D graphics, IShape Shape){

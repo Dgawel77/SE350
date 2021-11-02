@@ -11,6 +11,19 @@ public class Shape implements IShape {
   public Color pColor;
   public Color sColor;
   public Region region;
+
+  public IStrategy getOutlineStrategy() {
+    return outlineStrategy;
+  }
+
+  public IStrategy getFillStrategy() {
+    return fillStrategy;
+  }
+
+  public IStrategy getSelectionStrategy() {
+    return selectionStrategy;
+  }
+
   public IStrategy outlineStrategy;
   public IStrategy fillStrategy;
   public IStrategy selectionStrategy;
@@ -30,9 +43,9 @@ public class Shape implements IShape {
     this.pColor = r.getPrimaryColor();
     this.sColor = r.getSecondaryColor();
     this.region = new Region(r.getRegion());
-    outlineStrategy = new nullShapeDrawer();
-    fillStrategy = new nullShapeDrawer();
-    selectionStrategy = new nullShapeDrawer();
+    this.outlineStrategy = r.getOutlineStrategy();
+    fillStrategy = r.getFillStrategy();
+    selectionStrategy = r.getSelectionStrategy();
   }
 
   @Override

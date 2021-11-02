@@ -12,10 +12,9 @@ public class Renderer {
   public static void render(Graphics2D graphics){
     for(IShape shape: Frame.IShapeStack){
       shape.draw(graphics);
-    }
-    for(IShape shape: SelectionCommand.Select.SelectionList){
-      System.out.println("draw outline");
-      shape.drawSelection(graphics);
+      if (SelectionCommand.Select.SelectionList.contains(shape)){
+        shape.drawSelection(graphics);
+      }
     }
   }
 }
