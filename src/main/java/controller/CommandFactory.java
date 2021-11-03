@@ -1,6 +1,7 @@
 package controller;
 
 import controller.command.CopyCommand;
+import controller.command.DeleteCommand;
 import controller.command.DrawCommand;
 import controller.command.MoveCommand;
 import controller.command.PasteCommand;
@@ -52,5 +53,7 @@ public class CommandFactory {
   public Command MakePasteCommand(){
     return new PasteCommand(CopyCommand.currentCopySelection);
   }
+
+  public Command MakeDeleteCommand(){ return new DeleteCommand(SelectionCommand.currentSelect); }
 
 }

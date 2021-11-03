@@ -70,6 +70,9 @@ public class KeyboardInterface {
     //copy paste
     setupAction("copy", "control C", EventName.COPY, (type) -> CmdController.copy());
     setupAction("paste", "control V", EventName.PASTE, (type) -> CmdController.paste());
+
+    //delete
+    setupAction("delete", "control X", EventName.DELETE, (type) -> CmdController.delete());
   }
 
   private void setupAction(String name, String strokeName, Object mode, Consumer c) {

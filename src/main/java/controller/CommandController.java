@@ -45,4 +45,10 @@ public class CommandController {
     Canvas.repaint();
   }
 
+  public void delete(){
+    Command cmd = CommandMaker.MakeDeleteCommand();
+    cmd.run();
+    Canvas.repaint();
+  }
+
 }
