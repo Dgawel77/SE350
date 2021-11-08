@@ -16,11 +16,6 @@ public interface IShape {
   void draw(Graphics2D graphics);
   void drawSelection(Graphics2D graphics);
   void move(int xc, int yc);
-  void setOutlineStrategy(IStrategy outlineStrategy);
-  void setFillStrategy(IStrategy fillStrategy);
-  void setSelectionStrategy(IStrategy selectionStrategy);
-  IStrategy getOutlineStrategy();
-  IStrategy getFillStrategy();
-  IStrategy getSelectionStrategy();
+  void setAwtShape(java.awt.Shape _Shape);
 
 }

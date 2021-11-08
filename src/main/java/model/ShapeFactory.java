@@ -1,12 +1,15 @@
 package model;
 
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import model.interfaces.IShape;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
 import model.shapes.*;
-import model.shapes.experts.ellipseExpert;
-import model.shapes.experts.rectangleExpert;
-import model.shapes.experts.triangleExpert;
+import model.shapes.experts.drawExpert;
+import model.shapes.strategies.ShapeDrawer;
 
 public class ShapeFactory {
   private UserChoicesImpl choices;
@@ -16,71 +19,59 @@ public class ShapeFactory {
   }
 
   public IShape makeShape(Region region){
-    IShape Shape = new Shape(
+    ShapeImpl Shape = new ShapeImpl(
         region,
         choices.getActivePrimaryColor().AWTcolor,
         choices.getActiveSecondaryColor().AWTcolor);
-
+    java.awt.Shape curAwtShape = null;
     switch (choices.getActiveShapeType()){
       case ELLIPSE:
-        setEllipseStrategies(Shape);
+        curAwtShape = getEllipse(Shape);
         break;
       case TRIANGLE:
-        setTriangleStrategies(Shape);
+        curAwtShape = getPolygon(Shape);
         break;
       case RECTANGLE:
-        setRectangleStrategies(Shape);
+        curAwtShape = getRectangle(Shape);
         break;
     }
+    Shape.awtShape = curAwtShape;
+    setChoices(Shape);
     return Shape;
   }
 
-  public void setEllipseStrategies(IShape Shape){
-    switch (choices.getActiveShapeShadingType()) {
-      case OUTLINE:
-        Shape.setOutlineStrategy(ellipseExpert::drawOutline);
-        break;
-      case FILLED_IN:
-        Shape.setFillStrategy(ellipseExpert::drawFilled);
-        break;
-      case OUTLINE_AND_FILLED_IN:
-        Shape.setOutlineStrategy(ellipseExpert::drawOutline);
-        Shape.setFillStrategy(ellipseExpert::drawFilled);
-        break;
-    }
-    Shape.setSelectionStrategy(ellipseExpert::drawSelection);
-  }
-
-  public void setTriangleStrategies(IShape Shape) {
-    switch (choices.getActiveShapeShadingType()) {
-      case OUTLINE:
-        Shape.setOutlineStrategy(triangleExpert::drawOutline);
-        break;
-      case FILLED_IN:
-        Shape.setFillStrategy(triangleExpert::drawFilled);
-        break;
-      case OUTLINE_AND_FILLED_IN:
-        Shape.setOutlineStrategy(triangleExpert::drawOutline);
-        Shape.setFillStrategy(triangleExpert::drawFilled);
-        break;
-    }
-    Shape.setSelectionStrategy(triangleExpert::drawSelection);
-  }
-
-  public void setRectangleStrategies(IShape Shape){
+  private void setChoices(ShapeImpl Shape){
     switch (choices.getActiveShapeShadingType()){
-      case OUTLINE:
-        Shape.setOutlineStrategy(rectangleExpert::drawOutline);
+      case OUTLINE_AND_FILLED_IN:
+        Shape.setDrawFilled(drawExpert::drawFilled);
+        Shape.setDrawOutline(drawExpert::drawOutline);
         break;
       case FILLED_IN:
-        Shape.setFillStrategy(rectangleExpert::drawFilled);
+        Shape.setDrawFilled(drawExpert::drawFilled);
         break;
-      case OUTLINE_AND_FILLED_IN:
-        Shape.setOutlineStrategy(rectangleExpert::drawOutline);
-        Shape.setFillStrategy(rectangleExpert::drawFilled);
+      case OUTLINE:
+        Shape.setDrawOutline(drawExpert::drawOutline);
         break;
     }
-    Shape.setSelectionStrategy(rectangleExpert::drawSelection);
+    Shape.setDrawSelection(drawExpert::drawSelection);
+  }
+
+  private java.awt.Shape getRectangle(IShape Shape){
+    return new Rectangle(Shape.getX(), Shape.getY(), Shape.getWidth(), Shape.getHeight());
+  }
+
+  private java.awt.Shape getPolygon(IShape Shape){
+    int x = Shape.getX();
+    int y = Shape.getY();
+    int width = Shape.getWidth();
+    int height = Shape.getHeight();
+
+    return new Polygon(new int[]{x+(width/2), x+width, x},
+        new int[]{y, y+height, y+height}, 3);
+  }
+
+  private java.awt.Shape getEllipse(IShape Shape){
+    return new Ellipse2D.Float((float)Shape.getX(), (float)Shape.getY(), (float)Shape.getWidth(), (float)Shape.getHeight());
   }
 
 }

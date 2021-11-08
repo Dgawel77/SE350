@@ -5,7 +5,7 @@ import controller.interfaces.Undoable;
 import controller.selection.Selection;
 import java.util.ArrayList;
 import model.interfaces.IShape;
-import model.shapes.Shape;
+import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
@@ -13,7 +13,7 @@ public class PasteCommand implements Command, Undoable {
 
   public PasteCommand(Selection _Select){
     for (IShape s : _Select.SelectionList){
-      Shape newShape = new Shape(s);
+      ShapeImpl newShape = new ShapeImpl(s);
       int offset = CopyCommand.offset;
       newShape.move(offset, offset);
       additionList.add(newShape);
