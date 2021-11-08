@@ -3,7 +3,7 @@ package controller.command;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import controller.selection.Selection;
-import model.interfaces.IShape;
+import model.shapes.ShapeImpl;
 
 public class MoveCommand implements Command, Undoable{
   private Selection select;
@@ -19,7 +19,7 @@ public class MoveCommand implements Command, Undoable{
 
   @Override
   public void run(){
-    for(IShape Shape : select.SelectionList){
+    for(ShapeImpl Shape : select.SelectionList){
       Shape.move(xChange, yChange);
     }
     CommandHistory.add(this);
@@ -27,14 +27,14 @@ public class MoveCommand implements Command, Undoable{
 
   @Override
   public void undo() {
-    for(IShape Shape : select.SelectionList){
+    for(ShapeImpl Shape : select.SelectionList){
       Shape.move(-xChange, -yChange);
     }
   }
 
   @Override
   public void redo() {
-    for(IShape Shape : select.SelectionList){
+    for(ShapeImpl Shape : select.SelectionList){
       Shape.move(xChange, yChange);
     }
   }

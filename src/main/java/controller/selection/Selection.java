@@ -1,15 +1,15 @@
 package controller.selection;
 
 import java.util.ArrayList;
-import model.interfaces.IShape;
 import model.region.Region;
+import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class Selection {
-  public ArrayList<IShape> SelectionList = new ArrayList<>();
+  public ArrayList<ShapeImpl> SelectionList = new ArrayList<>();
 
   public Selection(Region region){
-    for(IShape shape : Frame.IShapeStack){
+    for(ShapeImpl shape : Frame.IShapeStack){
       if (region.intersects(shape.getRegion())){
         SelectionList.add(shape);
       }
@@ -22,7 +22,7 @@ public class Selection {
 
   public void print(){
     System.out.println("length is " + SelectionList.size());
-    for(IShape shape : SelectionList){
+    for(ShapeImpl shape : SelectionList){
       System.out.println(shape);
     }
   }

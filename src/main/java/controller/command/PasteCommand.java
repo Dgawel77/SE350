@@ -4,15 +4,14 @@ import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import controller.selection.Selection;
 import java.util.ArrayList;
-import model.interfaces.IShape;
 import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
-  private final ArrayList<IShape> additionList = new ArrayList<>();
+  private final ArrayList<ShapeImpl> additionList = new ArrayList<>();
 
   public PasteCommand(Selection _Select){
-    for (IShape s : _Select.SelectionList){
+    for (ShapeImpl s : _Select.SelectionList){
       ShapeImpl newShape = new ShapeImpl(s);
       int offset = CopyCommand.offset;
       newShape.move(offset, offset);
@@ -23,7 +22,7 @@ public class PasteCommand implements Command, Undoable {
   @Override
   public void run(){
     CommandHistory.add(this);
-    for (IShape s : additionList){
+    for (ShapeImpl s : additionList){
       Frame.addToFrame(s);
     }
     CopyCommand.incOffset();
@@ -31,7 +30,7 @@ public class PasteCommand implements Command, Undoable {
 
   @Override
   public void undo() {
-    for (IShape s : additionList){
+    for (ShapeImpl s : additionList){
       Frame.removeFromFrame();
     }
     CopyCommand.decOffset();
@@ -39,7 +38,7 @@ public class PasteCommand implements Command, Undoable {
 
   @Override
   public void redo() {
-    for (IShape s : additionList) {
+    for (ShapeImpl s : additionList) {
       Frame.addToFrame(s);
     }
     CopyCommand.incOffset();

@@ -4,7 +4,6 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import model.interfaces.IShape;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
 import model.shapes.*;
@@ -18,7 +17,7 @@ public class ShapeFactory {
     choices = _choices;
   }
 
-  public IShape makeShape(Region region){
+  public ShapeImpl makeShape(Region region){
     ShapeImpl Shape = new ShapeImpl(
         region,
         choices.getActivePrimaryColor().AWTcolor,
@@ -56,11 +55,11 @@ public class ShapeFactory {
     Shape.setDrawSelection(drawExpert::drawSelection);
   }
 
-  private java.awt.Shape getRectangle(IShape Shape){
+  private java.awt.Shape getRectangle(ShapeImpl Shape){
     return new Rectangle(Shape.getX(), Shape.getY(), Shape.getWidth(), Shape.getHeight());
   }
 
-  private java.awt.Shape getPolygon(IShape Shape){
+  private java.awt.Shape getPolygon(ShapeImpl Shape){
     int x = Shape.getX();
     int y = Shape.getY();
     int width = Shape.getWidth();
@@ -70,7 +69,7 @@ public class ShapeFactory {
         new int[]{y, y+height, y+height}, 3);
   }
 
-  private java.awt.Shape getEllipse(IShape Shape){
+  private java.awt.Shape getEllipse(ShapeImpl Shape){
     return new Ellipse2D.Float((float)Shape.getX(), (float)Shape.getY(), (float)Shape.getWidth(), (float)Shape.getHeight());
   }
 

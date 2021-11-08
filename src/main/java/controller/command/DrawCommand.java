@@ -2,16 +2,17 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
-import model.interfaces.IShape;
+import java.awt.Shape;
+import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class DrawCommand implements Undoable, Command {
-  private IShape shape;
-  public DrawCommand(IShape _shape){
+  private ShapeImpl shape;
+  public DrawCommand(ShapeImpl _shape){
     this.shape = _shape;
   }
 
-  public IShape getIShape(){
+  public ShapeImpl getIShape(){
     return this.shape;
   }
 
