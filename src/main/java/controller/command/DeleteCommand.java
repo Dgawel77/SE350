@@ -7,7 +7,7 @@ import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class DeleteCommand implements Undoable, Command {
-  private Stack<ShapeImpl> deleteList = new Stack<>();
+  private final Stack<ShapeImpl> deleteList = new Stack<>();
 
   public DeleteCommand(){
     this.deleteList.addAll(Frame.SelectionStack);

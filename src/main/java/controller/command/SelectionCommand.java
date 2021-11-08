@@ -13,6 +13,7 @@ public class SelectionCommand implements Command {
     }
 
     public void run(){
+        Frame.SelectionStack.clear();
         for(ShapeImpl shape : Frame.ShapeStack){
             if (region.intersects(shape.region)){
                 Frame.SelectionStack.add(shape);

@@ -1,6 +1,5 @@
 package view.gui;
 
-import controller.command.SelectionCommand;
 import java.util.Stack;
 import model.shapes.ShapeImpl;
 import org.slf4j.Logger;
