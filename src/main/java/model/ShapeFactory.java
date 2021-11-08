@@ -2,13 +2,13 @@ package model;
 
 import java.awt.Polygon;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.util.function.Function;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
 import model.shapes.*;
 import model.shapes.experts.drawExpert;
-import model.shapes.strategies.ShapeDrawer;
+import model.shapes.experts.getShapeExpert;
 
 public class ShapeFactory {
   private UserChoicesImpl choices;
@@ -22,21 +22,25 @@ public class ShapeFactory {
         region,
         choices.getActivePrimaryColor().AWTcolor,
         choices.getActiveSecondaryColor().AWTcolor);
-    java.awt.Shape curAwtShape = null;
-    switch (choices.getActiveShapeType()){
-      case ELLIPSE:
-        curAwtShape = getEllipse(Shape);
-        break;
-      case TRIANGLE:
-        curAwtShape = getPolygon(Shape);
-        break;
-      case RECTANGLE:
-        curAwtShape = getRectangle(Shape);
-        break;
-    }
-    Shape.awtShape = curAwtShape;
+    setGetFunction(Shape);
     setChoices(Shape);
     return Shape;
+  }
+
+  private void setGetFunction(ShapeImpl Shape){
+    Function<ShapeImpl, java.awt.Shape> getFunction = null;
+    switch (choices.getActiveShapeType()){
+      case ELLIPSE:
+        getFunction = getShapeExpert::getEllipse;
+        break;
+      case TRIANGLE:
+        getFunction = getShapeExpert::getPolygon;
+        break;
+      case RECTANGLE:
+        getFunction = getShapeExpert::getRectangle;
+        break;
+    }
+    Shape.getShapeFunction = getFunction;
   }
 
   private void setChoices(ShapeImpl Shape){
