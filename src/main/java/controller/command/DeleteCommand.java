@@ -2,37 +2,34 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
-import controller.selection.Selection;
-import java.util.ArrayList;
+import java.util.Stack;
 import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class DeleteCommand implements Undoable, Command {
-  private ArrayList<ShapeImpl> deleteList;
+  private Stack<ShapeImpl> deleteList = new Stack<>();
 
-  public DeleteCommand(Selection _Select){
-    this.deleteList = new ArrayList<ShapeImpl>(_Select.SelectionList);
+  public DeleteCommand(){
+    this.deleteList.addAll(Frame.SelectionStack);
   }
 
   @Override
   public void run() {
     CommandHistory.add(this);
     for (ShapeImpl s: deleteList){
-      Frame.IShapeStack.remove(s);
+      Frame.ShapeStack.remove(s);
     }
   }
 
   @Override
   public void undo() {
-    for (ShapeImpl s: deleteList){
-      Frame.IShapeStack.add(s);
-    }
+    Frame.ShapeStack.addAll(deleteList);
   }
 
   @Override
   public void redo() {
     for (ShapeImpl s: deleteList){
-      Frame.IShapeStack.remove(s);
+      Frame.ShapeStack.remove(s);
     }
   }
 }

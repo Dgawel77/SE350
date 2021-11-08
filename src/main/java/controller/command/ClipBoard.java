@@ -1,15 +1,18 @@
 package controller.command;
 
 import controller.interfaces.Command;
-import controller.selection.Selection;
+import java.util.Stack;
+import model.shapes.ShapeImpl;
+import view.gui.Frame;
 
-public class CopyCommand implements Command {
-  public static Selection currentCopySelection;
+public class ClipBoard implements Command {
+  public static final Stack<ShapeImpl> currentClipBoard = new Stack<>();
   public static int offset;
   private final static int step = 25;
 
-  public CopyCommand(Selection _Select){
-    currentCopySelection = _Select;
+  public ClipBoard(){
+    currentClipBoard.clear();
+    currentClipBoard.addAll(Frame.SelectionStack);
   }
 
   @Override

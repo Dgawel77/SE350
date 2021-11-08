@@ -1,6 +1,6 @@
 package controller;
 
-import controller.command.CopyCommand;
+import controller.command.ClipBoard;
 import controller.command.DeleteCommand;
 import controller.command.DrawCommand;
 import controller.command.MoveCommand;
@@ -10,6 +10,7 @@ import controller.interfaces.Command;
 import model.ShapeFactory;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
+import view.gui.Frame;
 
 public class CommandFactory {
   private final ShapeFactory ShapeMaker;
@@ -39,7 +40,7 @@ public class CommandFactory {
   }
 
   public Command MakeMoveCommand(int xChange, int yChange){
-    return new MoveCommand(xChange, yChange, SelectionCommand.currentSelect);
+    return new MoveCommand(xChange, yChange);
   }
 
   public Command MakeSelectionCommand(Region region){
@@ -47,13 +48,13 @@ public class CommandFactory {
   }
 
   public Command MakeCopyCommand(){
-    return new CopyCommand(SelectionCommand.currentSelect);
+    return new ClipBoard();
   }
 
   public Command MakePasteCommand(){
-    return new PasteCommand(CopyCommand.currentCopySelection);
+    return new PasteCommand();
   }
 
-  public Command MakeDeleteCommand(){ return new DeleteCommand(SelectionCommand.currentSelect); }
+  public Command MakeDeleteCommand(){ return new DeleteCommand(); }
 
 }

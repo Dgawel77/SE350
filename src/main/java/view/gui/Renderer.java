@@ -10,9 +10,9 @@ public class Renderer {
   private static final Logger log = LoggerFactory.getLogger(Renderer.class);
 
   public static void render(Graphics2D graphics){
-    for(ShapeImpl shape: Frame.IShapeStack){
+    for(ShapeImpl shape: Frame.ShapeStack){
       shape.draw(graphics);
-      if (SelectionCommand.currentSelect.SelectionList.contains(shape)){
+      if (Frame.SelectionStack.contains(shape)){
         shape.drawSelection(graphics);
       }
     }

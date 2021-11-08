@@ -1,11 +1,11 @@
 package controller.command;
 
 import controller.interfaces.Command;
-import controller.selection.Selection;
 import model.region.Region;
+import model.shapes.ShapeImpl;
+import view.gui.Frame;
 
 public class SelectionCommand implements Command {
-    public static Selection currentSelect = new Selection(new Region(-100, -100, 0, 0));
     private Region region;
 
     public SelectionCommand(Region region){
@@ -13,7 +13,11 @@ public class SelectionCommand implements Command {
     }
 
     public void run(){
-        currentSelect = new Selection(region);
+        for(ShapeImpl shape : Frame.ShapeStack){
+            if (region.intersects(shape.region)){
+                Frame.SelectionStack.add(shape);
+            }
+        }
     }
 
 }

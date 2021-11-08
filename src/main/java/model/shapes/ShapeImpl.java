@@ -69,10 +69,6 @@ public class ShapeImpl {
     return this.region.Start.y;
   }
 
-  public Region getRegion(){
-    return this.region;
-  }
-
   public void move(int xChange, int yChange){
     this.region.move(xChange, yChange);
   }
