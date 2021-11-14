@@ -3,11 +3,14 @@ package model.shapes;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.function.Function;
+
+import model.interfaces.IComponent;
+import model.interfaces.IShape;
 import model.interfaces.IStrategy;
 import model.region.Region;
 import model.shapes.strategies.*;
 
-public class ShapeImpl {
+public class ShapeImpl implements IComponent, IShape {
   public Color pColor;
   public Color sColor;
   public Region region;
@@ -84,5 +87,7 @@ public class ShapeImpl {
   public void setDrawSelection(IStrategy drawSelection) {
     this.drawSelection = drawSelection;
   }
+
+  public boolean intersects(Region r) {return r.intersects(this.region);}
 
 }
