@@ -1,9 +1,7 @@
 package view.gui;
 
-import controller.command.SelectionCommand;
 import java.awt.Graphics2D;
 import model.interfaces.IComponent;
-import model.shapes.ShapeImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -29,14 +29,13 @@ public class ShapeImpl implements IComponent, IShape {
     this.drawSelection = new nullShapeDrawer();
   }
 
-  public ShapeImpl(ShapeImpl r){
-    this.pColor = r.pColor;
-    this.sColor = r.sColor;
-    this.region = new Region(r.region);
-    this.getShapeFunction = r.getShapeFunction;
-    this.drawOutline = r.drawOutline;
-    this.drawFilled = r.drawFilled;
-    this.drawSelection = r.drawSelection;
+  public IComponent copy(){
+    ShapeImpl shape =  new ShapeImpl(new Region(region), this.pColor, this.sColor);
+    shape.getShapeFunction = this.getShapeFunction;
+    shape.drawOutline = this.drawOutline;
+    shape.drawFilled = this.drawFilled;
+    shape.drawSelection = this.drawSelection;
+    return shape;
   }
 
   public void draw(Graphics2D graphics){

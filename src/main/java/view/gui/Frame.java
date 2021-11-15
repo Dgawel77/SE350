@@ -2,7 +2,6 @@ package view.gui;
 
 import java.util.Stack;
 import model.interfaces.IComponent;
-import model.shapes.ShapeImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

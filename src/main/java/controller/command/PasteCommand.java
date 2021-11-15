@@ -2,12 +2,8 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
-import java.util.Stack;
-import model.groups.GroupImpl;
 import model.interfaces.IComponent;
-import model.interfaces.IGroup;
-import model.interfaces.IShape;
-import model.shapes.ShapeImpl;
+import java.util.Stack;
 import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
@@ -15,12 +11,7 @@ public class PasteCommand implements Command, Undoable {
 
   public PasteCommand(){
     for (IComponent s : ClipBoard.currentClipBoard){
-      IComponent newShape = null;
-      if (s instanceof IGroup){
-        newShape = new GroupImpl((GroupImpl)s);
-      }else if (s instanceof IShape ){
-        newShape = new ShapeImpl((ShapeImpl)s);
-      }
+      IComponent newShape = s.copy();
       int offset = ClipBoard.offset;
       newShape.move(offset, offset);
       additionList.add(newShape);

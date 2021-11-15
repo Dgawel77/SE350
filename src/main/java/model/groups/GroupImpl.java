@@ -19,6 +19,10 @@ public class GroupImpl implements IComponent, IGroup {
         this.ComponentList.addAll(G.ComponentList);
     }
 
+    public IComponent copy(){
+        return new GroupImpl(this.ComponentList);
+    }
+
     public void unwind(){
         Frame.removeFromFrame(this);
         for (IComponent component : ComponentList){
