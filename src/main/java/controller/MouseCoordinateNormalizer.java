@@ -19,5 +19,20 @@ public class MouseCoordinateNormalizer {
       end.x = tmp;
     }
   }
+  /*
+  if (_startY > _endY){
+    returnArray[1] = _endY;
+    returnArray[3] = _startY;
+  }else{
+    returnArray[1] = _startY;
+    returnArray[3] = _endY;
+  }
+    if (_startX > _endX){
+    returnArray[0] = _endX;
+    returnArray[2] = _startX;
+  }else{
+    returnArray[0] = _startX;
+    returnArray[2] = _endX;
+  }*/
 
 }

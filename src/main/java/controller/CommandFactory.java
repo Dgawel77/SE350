@@ -16,13 +16,15 @@ public class CommandFactory {
   }
 
   public Command MakeCommand(Point Start, Point End){
+    int xChange = End.x-Start.x;
+    int yChange = End.y-Start.y;
     MouseCoordinateNormalizer.normalizeCords(Start, End);
     Region region = new Region(Start, End);
     switch(Choices.getActiveMouseMode()){
       case DRAW:
         return MakeDrawCommand(region);
       case MOVE:
-        return MakeMoveCommand(End.x-Start.x, End.y-Start.y);
+        return MakeMoveCommand(xChange, yChange);
       case SELECT:
         return MakeSelectionCommand(region);
     }

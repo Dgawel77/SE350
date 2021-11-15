@@ -10,7 +10,7 @@ import model.shapes.experts.getShapeExpert;
 import model.shapes.strategies.ShapeDrawer;
 
 public class ShapeFactory {
-  private UserChoicesImpl choices;
+  private final UserChoicesImpl choices;
 
   public ShapeFactory(UserChoicesImpl _choices){
     choices = _choices;

@@ -11,18 +11,16 @@ public class Frame {
 
   private static final Logger log = LoggerFactory.getLogger(Frame.class);
 
-  public static boolean addToFrame(IComponent _shape){
+  public static void addToFrame(IComponent _shape){
     ShapeStack.push(_shape);
-    return true;
   }
 
-  public static boolean removeFromFrame(IComponent component){
+  public static void removeFromFrame(IComponent component){
     boolean result = !ShapeStack.empty();
     if (result) {
       ShapeStack.remove(component);
       SelectionStack.remove(component);
     }
-    return result;
   }
 
 }

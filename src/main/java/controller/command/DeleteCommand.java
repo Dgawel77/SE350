@@ -15,6 +15,7 @@ public class DeleteCommand implements Undoable, Command {
 
   @Override
   public void run() {
+    if(deleteList.isEmpty()) return;
     CommandHistory.add(this);
     for (IComponent s: deleteList){
       Frame.removeFromFrame(s);

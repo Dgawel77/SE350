@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import view.gui.Frame;
 
 public class GroupImpl implements IComponent, IGroup {
-    private ArrayList<IComponent> ComponentList = new ArrayList<>();
+    private final ArrayList<IComponent> ComponentList = new ArrayList<>();
 
     public GroupImpl(ArrayList<IComponent> list){
         ComponentList.addAll(list);
     }
 
-    public GroupImpl(GroupImpl G){
-        this.ComponentList.addAll(G.ComponentList);
-    }
-
     public IComponent copy(){
-        return new GroupImpl(this.ComponentList);
+       GroupImpl Group = new GroupImpl(new ArrayList<>());
+       for (IComponent component : ComponentList){
+           Group.ComponentList.add(component.copy());
+       }
+       return Group;
     }
 
     public void unwind(){

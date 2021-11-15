@@ -13,7 +13,6 @@ public class ShapeDrawer implements IStrategy {
 
   @Override
   public void draw(Graphics2D graphics, ShapeImpl Shape){
-    System.out.println("hello");
     consumer.accept(graphics, Shape);
   }
 

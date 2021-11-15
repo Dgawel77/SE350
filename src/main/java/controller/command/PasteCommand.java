@@ -20,6 +20,7 @@ public class PasteCommand implements Command, Undoable {
 
   @Override
   public void run(){
+    if (additionList.isEmpty()) return;
     CommandHistory.add(this);
     for (IComponent s : additionList){
       Frame.addToFrame(s);

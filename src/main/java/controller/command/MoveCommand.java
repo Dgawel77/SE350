@@ -2,6 +2,7 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
+import java.awt.Shape;
 import java.util.ArrayList;
 import model.interfaces.IComponent;
 import view.gui.Frame;
@@ -15,15 +16,16 @@ public class MoveCommand implements Command, Undoable{
   public MoveCommand(int xChange, int yChange) {
     this.xChange = xChange;
     this.yChange = yChange;
+    shapesToMove.addAll(Frame.SelectionStack);
   }
 
   @Override
   public void run(){
-    shapesToMove.addAll(Frame.SelectionStack);
+    if (shapesToMove.isEmpty()) return;
+    CommandHistory.add(this);
     for(IComponent Shape : shapesToMove){
       Shape.move(xChange, yChange);
     }
-    CommandHistory.add(this);
   }
 
   @Override

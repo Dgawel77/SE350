@@ -15,6 +15,7 @@ public class UnGroupCommand implements Command, Undoable {
 
   @Override
   public void run() {
+    if (GroupedObjects.isEmpty()) return;
     CommandHistory.add(this);
     for (IComponent component : GroupedObjects){
       component.unwind();
