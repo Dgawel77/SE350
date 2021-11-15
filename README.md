@@ -1,5 +1,4 @@
-
-#David Gawel's JPaint project.
+# David Gawel's JPaint project.
 
 Features so far
 1. Draw Ellipses, Triangles, and Rectangles to the screen.
@@ -9,6 +8,9 @@ Features so far
 5. Selected shapes are highlighted.
 6. Move selected shapes in any direction.
 7. Copy and paste any selected shapes.
-8. Redo and undo draw, move, and copy/paste.
+8. Group or ungroup multiple shapes together.
+9. Group multiple groups together.
+10. Keyboard shortcuts for every command.
+11. Redo, undo, draw, move, delete, group, ungroup, and copy/paste.
 
 There are more features on the way!
