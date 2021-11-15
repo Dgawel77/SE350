@@ -6,7 +6,7 @@ import model.shapes.ShapeImpl;
 
 public class drawExpert {
   public static void drawFilled(Graphics2D graphics, ShapeImpl Shape){
-    graphics.setColor(Shape.pColor);
+    graphics.setColor(Shape.getPrimaryColor());
     graphics.fill(Shape.getShapeFunction.apply(Shape));
   }
 

@@ -4,6 +4,7 @@ import model.region.Region;
 import java.awt.*;
 
 public interface IComponent {
+    boolean selected = false;
     void unwind();
     void rewind();
     IComponent copy();

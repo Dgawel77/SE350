@@ -1,14 +1,13 @@
 package model;
 
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
 import java.util.function.Function;
 import model.persistence.UserChoicesImpl;
 import model.region.Region;
-import model.shapes.*;
+import model.shapes.ShapeImpl;
+import model.shapes.colorHolder;
 import model.shapes.experts.drawExpert;
 import model.shapes.experts.getShapeExpert;
+import model.shapes.strategies.ShapeDrawer;
 
 public class ShapeFactory {
   private UserChoicesImpl choices;
@@ -20,8 +19,9 @@ public class ShapeFactory {
   public ShapeImpl makeShape(Region region){
     ShapeImpl Shape = new ShapeImpl(
         region,
+        new colorHolder(
         choices.getActivePrimaryColor().AWTcolor,
-        choices.getActiveSecondaryColor().AWTcolor);
+        choices.getActiveSecondaryColor().AWTcolor));
     setGetFunction(Shape);
     setChoices(Shape);
     return Shape;
@@ -46,35 +46,17 @@ public class ShapeFactory {
   private void setChoices(ShapeImpl Shape){
     switch (choices.getActiveShapeShadingType()){
       case OUTLINE_AND_FILLED_IN:
-        Shape.setDrawFilled(drawExpert::drawFilled);
-        Shape.setDrawOutline(drawExpert::drawOutline);
+        Shape.setDrawFilled(new ShapeDrawer(drawExpert::drawFilled));
+        Shape.setDrawOutline(new ShapeDrawer(drawExpert::drawOutline));
         break;
       case FILLED_IN:
-        Shape.setDrawFilled(drawExpert::drawFilled);
+        Shape.setDrawFilled(new ShapeDrawer(drawExpert::drawFilled));
         break;
       case OUTLINE:
-        Shape.setDrawOutline(drawExpert::drawOutline);
+        Shape.setDrawOutline(new ShapeDrawer(drawExpert::drawOutline));
         break;
     }
-    Shape.setDrawSelection(drawExpert::drawSelection);
-  }
-
-  private java.awt.Shape getRectangle(ShapeImpl Shape){
-    return new Rectangle(Shape.getX(), Shape.getY(), Shape.getWidth(), Shape.getHeight());
-  }
-
-  private java.awt.Shape getPolygon(ShapeImpl Shape){
-    int x = Shape.getX();
-    int y = Shape.getY();
-    int width = Shape.getWidth();
-    int height = Shape.getHeight();
-
-    return new Polygon(new int[]{x+(width/2), x+width, x},
-        new int[]{y, y+height, y+height}, 3);
-  }
-
-  private java.awt.Shape getEllipse(ShapeImpl Shape){
-    return new Ellipse2D.Float((float)Shape.getX(), (float)Shape.getY(), (float)Shape.getWidth(), (float)Shape.getHeight());
+    Shape.setDrawSelection(new ShapeDrawer(drawExpert::drawSelection));
   }
 
 }

@@ -3,56 +3,45 @@ package model.shapes;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.function.Function;
-
-import model.interfaces.IComponent;
-import model.interfaces.IShape;
-import model.interfaces.IStrategy;
+import model.interfaces.*;
 import model.region.Region;
-import model.shapes.strategies.*;
 
 public class ShapeImpl implements IComponent, IShape {
-  public Color pColor;
-  public Color sColor;
-  public Region region;
+  private final colorHolder colorHolder;
+  private final Region region;
   public Function<ShapeImpl, java.awt.Shape> getShapeFunction;
-  private IStrategy drawOutline;
-  private IStrategy drawFilled;
-  private IStrategy drawSelection;
+  private drawStrategyHolder drawHolder;
 
-  public ShapeImpl(Region _Region, Color _pColor, Color _sColor){
-    this.pColor = _pColor;
-    this.sColor = _sColor;
+  public ShapeImpl(Region _Region, colorHolder colorHolder){
+    this.colorHolder = colorHolder;
     this.region = _Region;
     this.getShapeFunction = null;
-    this.drawOutline = new nullShapeDrawer();
-    this.drawFilled = new nullShapeDrawer();
-    this.drawSelection = new nullShapeDrawer();
+    this.drawHolder = new drawStrategyHolder();
   }
 
   public IComponent copy(){
-    ShapeImpl shape =  new ShapeImpl(new Region(region), this.pColor, this.sColor);
+    ShapeImpl shape =  new ShapeImpl(new Region(region), this.colorHolder);
     shape.getShapeFunction = this.getShapeFunction;
-    shape.drawOutline = this.drawOutline;
-    shape.drawFilled = this.drawFilled;
-    shape.drawSelection = this.drawSelection;
+    shape.drawHolder = this.drawHolder;
     return shape;
   }
 
   public void draw(Graphics2D graphics){
-    drawOutline.draw(graphics, this);
-    drawFilled.draw(graphics, this);
+    drawHolder.drawOutline.draw(graphics, this);
+    drawHolder.drawFilled.draw(graphics, this);
   }
 
   public void drawSelection(Graphics2D graphics){
-    drawSelection.draw(graphics, this);
+    drawHolder.drawSelection.draw(graphics, this);
   }
 
   public Color getOutlineColor(){
-    if (drawOutline instanceof nullShapeDrawer ||
-        drawFilled instanceof nullShapeDrawer){
-      return pColor;
-    }
-    return sColor;
+    if (drawHolder.isValid()) return colorHolder.sColor;
+    return colorHolder.pColor;
+  }
+
+  public Color getPrimaryColor(){
+    return colorHolder.pColor;
   }
 
   public void unwind() {}
@@ -80,15 +69,15 @@ public class ShapeImpl implements IComponent, IShape {
   }
 
   public void setDrawOutline(IStrategy drawOutline) {
-    this.drawOutline = drawOutline;
+    drawHolder.drawOutline = drawOutline;
   }
 
   public void setDrawFilled(IStrategy drawFilled) {
-    this.drawFilled = drawFilled;
+    drawHolder.drawFilled = drawFilled;
   }
 
   public void setDrawSelection(IStrategy drawSelection) {
-    this.drawSelection = drawSelection;
+    drawHolder.drawSelection = drawSelection;
   }
 
   public boolean intersects(Region r) {return r.intersects(this.region);}

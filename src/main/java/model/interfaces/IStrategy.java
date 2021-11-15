@@ -5,4 +5,5 @@ import model.shapes.ShapeImpl;
 
 public interface IStrategy {
   void draw(Graphics2D graphics, ShapeImpl Shape);
+  boolean isValid();
 }

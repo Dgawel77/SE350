@@ -16,4 +16,9 @@ public class ShapeDrawer implements IStrategy {
     System.out.println("hello");
     consumer.accept(graphics, Shape);
   }
+
+  @Override
+  public boolean isValid(){
+    return true;
+  }
 }
