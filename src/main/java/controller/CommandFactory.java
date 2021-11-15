@@ -3,9 +3,11 @@ package controller;
 import controller.command.ClipBoard;
 import controller.command.DeleteCommand;
 import controller.command.DrawCommand;
+import controller.command.GroupCommand;
 import controller.command.MoveCommand;
 import controller.command.PasteCommand;
 import controller.command.SelectionCommand;
+import controller.command.UnGroupCommand;
 import controller.interfaces.Command;
 import model.ShapeFactory;
 import model.persistence.UserChoicesImpl;
@@ -56,5 +58,9 @@ public class CommandFactory {
   }
 
   public Command MakeDeleteCommand(){ return new DeleteCommand(); }
+
+  public Command MakeGroupCommand(){ return new GroupCommand(); }
+
+  public Command MakeUnGroupCommand(){ return new UnGroupCommand(); }
 
 }

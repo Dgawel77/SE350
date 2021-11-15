@@ -37,5 +37,7 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.COPY, CmdController::copy);
         uiModule.addEvent(EventName.PASTE, CmdController::paste);
         uiModule.addEvent(EventName.DELETE, CmdController::delete);
+        uiModule.addEvent(EventName.GROUP, CmdController::group);
+        uiModule.addEvent(EventName.UNGROUP, CmdController::ungroup);
     }
 }

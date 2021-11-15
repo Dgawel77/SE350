@@ -3,11 +3,12 @@ package controller.command;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.util.Stack;
+import model.interfaces.IComponent;
 import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class DeleteCommand implements Undoable, Command {
-  private final Stack<ShapeImpl> deleteList = new Stack<>();
+  private final Stack<IComponent> deleteList = new Stack<>();
 
   public DeleteCommand(){
     this.deleteList.addAll(Frame.SelectionStack);
@@ -16,7 +17,7 @@ public class DeleteCommand implements Undoable, Command {
   @Override
   public void run() {
     CommandHistory.add(this);
-    for (ShapeImpl s: deleteList){
+    for (IComponent s: deleteList){
       Frame.ShapeStack.remove(s);
     }
   }
@@ -28,7 +29,7 @@ public class DeleteCommand implements Undoable, Command {
 
   @Override
   public void redo() {
-    for (ShapeImpl s: deleteList){
+    for (IComponent s: deleteList){
       Frame.ShapeStack.remove(s);
     }
   }

@@ -51,4 +51,16 @@ public class CommandController {
     Canvas.repaint();
   }
 
+  public void group(){
+    Command cmd = CommandMaker.MakeGroupCommand();
+    cmd.run();
+    Canvas.repaint();
+  }
+
+  public void ungroup(){
+    Command cmd = CommandMaker.MakeUnGroupCommand();
+    cmd.run();
+    Canvas.repaint();
+  }
+
 }

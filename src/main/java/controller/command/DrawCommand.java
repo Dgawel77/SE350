@@ -13,7 +13,7 @@ public class DrawCommand implements Undoable, Command {
 
   @Override
   public void undo(){
-    Frame.removeFromFrame();
+    Frame.removeFromFrame(shape);
   }
 
   @Override

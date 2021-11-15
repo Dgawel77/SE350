@@ -73,6 +73,12 @@ public class KeyboardInterface {
 
     //delete
     setupAction("delete", "control X", EventName.DELETE, (type) -> CmdController.delete());
+
+    //group ungroup
+    setupAction("group", "control U", EventName.GROUP, (type) -> CmdController.group());
+    setupAction("ungroup", "control N", EventName.UNGROUP, (type) -> CmdController.ungroup());
+
+
   }
 
   private void setupAction(String name, String strokeName, Object mode, Consumer c) {

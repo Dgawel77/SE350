@@ -56,6 +56,10 @@ public class ShapeImpl implements IComponent, IShape {
     return sColor;
   }
 
+  public void unwind() {}
+
+  public void rewind() {}
+
   public int getWidth(){
     return this.region.End.x - this.region.Start.x;
   }

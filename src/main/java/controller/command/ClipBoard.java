@@ -2,11 +2,12 @@ package controller.command;
 
 import controller.interfaces.Command;
 import java.util.Stack;
+import model.interfaces.IComponent;
 import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class ClipBoard implements Command {
-  public static final Stack<ShapeImpl> currentClipBoard = new Stack<>();
+  public static final Stack<IComponent> currentClipBoard = new Stack<>();
   public static int offset;
   private final static int step = 25;
 

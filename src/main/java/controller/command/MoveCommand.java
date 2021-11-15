@@ -3,11 +3,12 @@ package controller.command;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.util.Stack;
+import model.interfaces.IComponent;
 import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class MoveCommand implements Command, Undoable{
-  private Stack<ShapeImpl> shapesToMove;
+  private Stack<IComponent> shapesToMove;
   private final int xChange;
   private final int yChange;
 
@@ -21,7 +22,7 @@ public class MoveCommand implements Command, Undoable{
   @Override
   public void run(){
     shapesToMove.addAll(Frame.SelectionStack);
-    for(ShapeImpl Shape : shapesToMove){
+    for(IComponent Shape : shapesToMove){
       Shape.move(xChange, yChange);
     }
     CommandHistory.add(this);
@@ -29,14 +30,14 @@ public class MoveCommand implements Command, Undoable{
 
   @Override
   public void undo() {
-    for(ShapeImpl Shape : shapesToMove){
+    for(IComponent Shape : shapesToMove){
       Shape.move(-xChange, -yChange);
     }
   }
 
   @Override
   public void redo() {
-    for(ShapeImpl Shape : shapesToMove){
+    for(IComponent Shape : shapesToMove){
       Shape.move(xChange, yChange);
     }
   }
