@@ -2,19 +2,17 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
-import java.util.Stack;
+import java.util.ArrayList;
 import model.interfaces.IComponent;
-import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class MoveCommand implements Command, Undoable{
-  private Stack<IComponent> shapesToMove;
+  private final ArrayList<IComponent> shapesToMove = new ArrayList<>();
   private final int xChange;
   private final int yChange;
 
 
   public MoveCommand(int xChange, int yChange) {
-    this.shapesToMove = new Stack<>();
     this.xChange = xChange;
     this.yChange = yChange;
   }

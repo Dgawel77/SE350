@@ -10,12 +10,14 @@ import view.gui.Frame;
 public class GroupCommand implements Command, Undoable {
   ArrayList<IComponent> GroupedObjects = new ArrayList<>();
   GroupImpl Group;
+
   public GroupCommand(){
     GroupedObjects.addAll(Frame.SelectionStack);
   }
 
   @Override
   public void run(){
+    if (GroupedObjects.isEmpty()) return;
     CommandHistory.add(this);
     Group = new GroupImpl(GroupedObjects);
     Frame.addToFrame(Group);

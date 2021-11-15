@@ -8,6 +8,7 @@ import view.gui.Frame;
 
 public class UnGroupCommand implements Command, Undoable {
   ArrayList<IComponent> GroupedObjects = new ArrayList<>();
+
   public UnGroupCommand(){
     GroupedObjects.addAll(Frame.SelectionStack);
   }

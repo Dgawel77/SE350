@@ -6,7 +6,7 @@ import model.region.Region;
 import org.junit.jupiter.api.Test;
 
 class RegionCheckerTest {
-  private Region Region1 = new Region(100, 100, 100, 100);
+  /*private Region Region1 = new Region(100, 100, 100, 100);
   @Test
   void AreOnTop() {
     Region Region2 = new Region(100, 100, 100, 100);
@@ -103,6 +103,6 @@ class RegionCheckerTest {
     Region Region2 = new Region(200, 100, 100, 100);
     assertTrue(Region1.intersects(Region2));
     assertTrue(Region2.intersects(Region1));
-  }
+  }*/
 
 }

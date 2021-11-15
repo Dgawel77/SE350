@@ -5,28 +5,19 @@ import org.slf4j.LoggerFactory;
 
 public class MouseCoordinateNormalizer {
   private static final Logger log = LoggerFactory.getLogger(MouseCoordinateNormalizer.class);
-  //0 nTopX
-  //1 nTopY
-  //2 nBottomX
-  //3 nBottomY
 
-  public static int[] normalizeCords(int _startX, int _startY, int _endX, int _endY){
-    int[] returnArray = new int[4];
-    if (_startY > _endY){
-      returnArray[1] = _endY;
-      returnArray[3] = _startY;
-    }else{
-      returnArray[1] = _startY;
-      returnArray[3] = _endY;
+  public static void normalizeCords(Point start, Point end){
+    int tmp;
+    if (start.y > end.y){
+      tmp = start.y;
+      start.y = end.y;
+      end.y = tmp;
     }
-    if (_startX > _endX){
-      returnArray[0] = _endX;
-      returnArray[2] = _startX;
-    }else{
-      returnArray[0] = _startX;
-      returnArray[2] = _endX;
+    if (start.x > end.x){
+      tmp = start.x;
+      start.x = end.x;
+      end.x = tmp;
     }
-    return returnArray;
   }
 
 }

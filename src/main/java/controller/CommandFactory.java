@@ -16,8 +16,8 @@ public class CommandFactory {
   }
 
   public Command MakeCommand(Point Start, Point End){
-    int[] nP = MouseCoordinateNormalizer.normalizeCords(Start.x, Start.y, End.x, End.y);
-    Region region = new Region(nP[0], nP[1], nP[2]-nP[0], nP[3]-nP[1]);
+    MouseCoordinateNormalizer.normalizeCords(Start, End);
+    Region region = new Region(Start, End);
     switch(Choices.getActiveMouseMode()){
       case DRAW:
         return MakeDrawCommand(region);

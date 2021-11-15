@@ -1,13 +1,12 @@
 package controller.command;
 
 import controller.interfaces.Command;
-import java.util.Stack;
+import java.util.ArrayList;
 import model.interfaces.IComponent;
-import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class ClipBoard implements Command {
-  public static final Stack<IComponent> currentClipBoard = new Stack<>();
+  public static final ArrayList<IComponent> currentClipBoard = new ArrayList<>();
   public static int offset;
   private final static int step = 25;
 

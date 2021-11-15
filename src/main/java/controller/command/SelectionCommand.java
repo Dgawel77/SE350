@@ -6,7 +6,7 @@ import model.region.Region;
 import view.gui.Frame;
 
 public class SelectionCommand implements Command {
-    private Region region;
+    private final Region region;
 
     public SelectionCommand(Region region){
         this.region = region;
@@ -14,9 +14,9 @@ public class SelectionCommand implements Command {
 
     public void run(){
         Frame.SelectionStack.clear();
-        for(IComponent shape : Frame.ShapeStack){
-            if (shape.intersects(region)){
-                Frame.SelectionStack.add(shape);
+        for(IComponent component : Frame.ShapeStack){
+            if (component.intersects(region)){
+                Frame.SelectionStack.add(component);
             }
         }
     }

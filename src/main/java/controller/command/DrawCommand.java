@@ -6,7 +6,7 @@ import model.shapes.ShapeImpl;
 import view.gui.Frame;
 
 public class DrawCommand implements Undoable, Command {
-  private ShapeImpl shape;
+  private final ShapeImpl shape;
   public DrawCommand(ShapeImpl _shape){
     this.shape = _shape;
   }
@@ -23,7 +23,7 @@ public class DrawCommand implements Undoable, Command {
 
   @Override
   public void run(){
-    Frame.addToFrame(this.shape);
     CommandHistory.add(this);
+    Frame.addToFrame(this.shape);
   }
 }

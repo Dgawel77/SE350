@@ -1,7 +1,6 @@
 package controller;
 
 import controller.command.CommandHistory;
-import controller.interfaces.Command;
 import view.gui.PaintCanvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,7 @@ public class CommandController {
   }
 
   public void pressedAt(Point Start, Point End){
-    Command cmd = CommandMaker.MakeCommand(Start, End);
-    cmd.run();
+    CommandMaker.MakeCommand(Start, End).run();
     Canvas.repaint();
   }
 
@@ -35,31 +33,26 @@ public class CommandController {
   }
 
   public void copy(){
-    Command cmd = CommandMaker.MakeCopyCommand();
-    cmd.run();
+    CommandMaker.MakeCopyCommand().run();
   }
 
   public void paste(){
-    Command cmd = CommandMaker.MakePasteCommand();
-    cmd.run();
+    CommandMaker.MakePasteCommand().run();
     Canvas.repaint();
   }
 
   public void delete(){
-    Command cmd = CommandMaker.MakeDeleteCommand();
-    cmd.run();
+    CommandMaker.MakeDeleteCommand().run();
     Canvas.repaint();
   }
 
   public void group(){
-    Command cmd = CommandMaker.MakeGroupCommand();
-    cmd.run();
+    CommandMaker.MakeGroupCommand().run();
     Canvas.repaint();
   }
 
   public void ungroup(){
-    Command cmd = CommandMaker.MakeUnGroupCommand();
-    cmd.run();
+    CommandMaker.MakeUnGroupCommand().run();
     Canvas.repaint();
   }
 

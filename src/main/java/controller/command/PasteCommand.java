@@ -2,19 +2,19 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
+import java.util.ArrayList;
 import model.interfaces.IComponent;
-import java.util.Stack;
 import view.gui.Frame;
 
 public class PasteCommand implements Command, Undoable {
-  private final Stack<IComponent> additionList = new Stack<>();
+  private final ArrayList<IComponent> additionList = new ArrayList<>();
 
   public PasteCommand(){
     for (IComponent s : ClipBoard.currentClipBoard){
-      IComponent newShape = s.copy();
+      IComponent newComponent = s.copy();
       int offset = ClipBoard.offset;
-      newShape.move(offset, offset);
-      additionList.add(newShape);
+      newComponent.move(offset, offset);
+      additionList.add(newComponent);
     }
   }
 

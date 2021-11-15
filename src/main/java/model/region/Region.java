@@ -6,9 +6,9 @@ public class Region {
   public Point Start;
   public Point End;
 
-  public Region(int x, int y, int width, int height) {
-    this.Start = new Point(x, y);
-    this.End = new Point(x+width, y+height);
+  public Region(Point Start, Point End){
+    this.Start = Start;
+    this.End = End;
   }
 
   public Region(Region r) {
