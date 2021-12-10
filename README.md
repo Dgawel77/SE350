@@ -1,5 +1,7 @@
 # David Gawel's JPaint project.
 
+This was a class project for SE-350
+
 Features so far
 1. Draw Ellipses, Triangles, and Rectangles to the screen.
 2. Make the shapes any color with any combinations of shading.
@@ -13,4 +15,8 @@ Features so far
 10. Keyboard shortcuts for every command.
 11. Redo, undo, draw, move, delete, group, ungroup, and copy/paste.
 
-There are more features on the way!
+All the view components and the gui were from a skeleton file made by my professor, all code that draws objects was made by me.
+
+## Timeline
+
+Sep 2021 - Nov 2021
