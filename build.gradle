@@ -66,3 +66,11 @@ ext{
 application{
     mainClassName = javaMainClass
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'main.Main'
+        )
+    }
+}
